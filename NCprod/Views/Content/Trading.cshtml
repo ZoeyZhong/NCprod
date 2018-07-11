@@ -1,0 +1,50 @@
+﻿@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "交易管理--配送中";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+    });
+
+
+    function onRowSelected_wuliu(orderid) {
+        window.location.href = "/Content/Logistics?id=" + orderid;
+    }
+
+</script>
+
+@(Html.Telerik().Grid<Commdity5>().Name("ALLPRODUCTS")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(o => o.orderid).Title("订单ID").Hidden();
+                        columns.Bound(o => o.com_ID).Title("商品ID").Hidden();
+                        
+                        columns.Bound(o => o.com_content).Title("图片").Hidden();
+                        columns.Bound(o => o.com_ID).Title("图片")
+                         .ClientTemplate("<a href=\"#\"  title='图片'\">" +
+                        "<img style=\"width:80px;height:80px\" src='<#= com_content #>'></a>")
+                                    .Width(80);
+                        columns.Bound(o => o.com_name).Title("商品名称").Width(100);
+                        columns.Bound(o => o.commodity_num).Title("商品数量").Width(100);
+                        columns.Bound(o => o.option5).Title("商品重量").Width(100);
+                        columns.Bound(o => o.com_price).Title("交易金额").Width(100);
+                        columns.Bound(o => o.com_postage).Title("邮费").Width(100);
+                        columns.Bound(o => o.con_id).Title("消费者电话").Width(100);
+                        columns.Bound(o => o.con_name).Title("消费者名字").Width(100);
+                        columns.Bound(o => o.adress).Title("收货地址").Width(100);
+                        columns.Bound(o => o.happendate).Title("下单时间").Width(100);
+                        columns.Bound(o => o.option3).Title("快递单号").Width(100);
+                        columns.Bound(o => o.option4).Title("快递公司").Width(100);
+                        columns.Bound(o => o.orderid).Title("操作")
+                            .ClientTemplate("<a href=\"#\"  title='录入快递单号' onclick=\"onRowSelected_wuliu(<#= orderid #>)\">" +
+                            "<img src='/PIC/back/danhao.png'></a>")
+                            .Width(80);
+                    })
+                                .DataBinding(dataBinding => dataBinding.Ajax().Select("PProductList", "Content"))
+                            .Selectable()
+                            .Pageable()
+                            .Footer(true)
+)

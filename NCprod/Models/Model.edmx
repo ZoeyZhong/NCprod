@@ -1,0 +1,808 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NCtecanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dl_basic_users">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="userphone" Type="varchar" MaxLength="50" />
+          <Property Name="userpwd" Type="varchar" MaxLength="120" />
+          <Property Name="exname" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="idnum" Type="varchar" MaxLength="100" />
+          <Property Name="shopid" Type="varchar" MaxLength="50" />
+          <Property Name="jointime" Type="datetime" />
+          <Property Name="usercode" Type="varchar" MaxLength="100" />
+          <Property Name="useraddr" Type="varchar" MaxLength="200" />
+          <Property Name="userQQ" Type="varchar" MaxLength="100" />
+          <Property Name="isDel" Type="bit" />
+          <Property Name="comment" Type="varchar" MaxLength="500" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="100" />
+          <Property Name="option3" Type="varchar" MaxLength="100" />
+          <Property Name="option4" Type="varchar" MaxLength="100" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sys_function">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pid" Type="int" />
+          <Property Name="function" Type="varchar" MaxLength="200" />
+          <Property Name="title" Type="varchar" MaxLength="500" />
+          <Property Name="control" Type="varchar" MaxLength="500" />
+          <Property Name="functionname" Type="varchar" MaxLength="100" />
+          <Property Name="parameters" Type="varchar" MaxLength="100" />
+          <Property Name="order" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="level" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="url" Type="varchar" MaxLength="100" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="100" />
+          <Property Name="option3" Type="varchar" MaxLength="100" />
+          <Property Name="option4" Type="varchar" MaxLength="100" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sys_role">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="rolename" Type="varchar" MaxLength="100" />
+          <Property Name="url" Type="varchar" MaxLength="100" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="100" />
+          <Property Name="option3" Type="varchar" MaxLength="100" />
+          <Property Name="option4" Type="varchar" MaxLength="100" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sys_role_function">
+          <Key>
+            <PropertyRef Name="fid" />
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="fid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="rid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="100" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="100" />
+          <Property Name="option3" Type="varchar" MaxLength="100" />
+          <Property Name="option4" Type="varchar" MaxLength="100" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sys_user_role">
+          <Key>
+            <PropertyRef Name="rid" />
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="rid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="userid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="100" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="100" />
+          <Property Name="option3" Type="varchar" MaxLength="100" />
+          <Property Name="option4" Type="varchar" MaxLength="100" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="t_f_adress">
+          <Key>
+            <PropertyRef Name="adr_ID" />
+          </Key>
+          <Property Name="adr_ID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="province" Type="char" MaxLength="10" />
+          <Property Name="area" Type="char" MaxLength="10" />
+          <Property Name="town" Type="char" MaxLength="10" />
+          <Property Name="adress" Type="varchar" MaxLength="500" />
+          <Property Name="conss_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="comment" Type="varchar" MaxLength="500" />
+          <Property Name="isdel" Type="bit" />
+          <Property Name="happendate" Type="datetime" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="500" />
+          <Property Name="option3" Type="varchar" MaxLength="500" />
+          <Property Name="option4" Type="varchar" MaxLength="500" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="t_f_area">
+          <Key>
+            <PropertyRef Name="areaid" />
+          </Key>
+          <Property Name="areaid" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaname" Type="varchar" MaxLength="200" />
+          <Property Name="areacode" Type="varchar" MaxLength="100" />
+          <Property Name="porgareaid" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="level" Type="int" />
+          <Property Name="comment" Type="varchar" MaxLength="500" />
+          <Property Name="isdel" Type="bit" />
+          <Property Name="happendate" Type="datetime" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="100" />
+          <Property Name="option3" Type="varchar" MaxLength="100" />
+          <Property Name="option4" Type="varchar" MaxLength="100" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="t_f_cart">
+          <Key>
+            <PropertyRef Name="cart_ID" />
+          </Key>
+          <Property Name="cart_ID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cons_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="coms_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="coms_num" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="isdel" Type="bit" />
+          <Property Name="happendate" Type="datetime" />
+          <Property Name="comment" Type="varchar" MaxLength="500" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="500" />
+          <Property Name="option3" Type="varchar" MaxLength="500" />
+          <Property Name="option4" Type="varchar" MaxLength="500" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="t_f_collect">
+          <Key>
+            <PropertyRef Name="collect_id" />
+          </Key>
+          <Property Name="collect_id" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="con_id" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="commodity_id" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="isdel" Type="bit" />
+          <Property Name="happendate" Type="datetime" />
+          <Property Name="comment" Type="varchar" MaxLength="500" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="500" />
+          <Property Name="option3" Type="varchar" MaxLength="500" />
+          <Property Name="option4" Type="varchar" MaxLength="500" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="t_f_commodity">
+          <Key>
+            <PropertyRef Name="com_ID" />
+          </Key>
+          <Property Name="com_ID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="com_price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="com_belong" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="com_name" Type="varchar" MaxLength="500" />
+          <Property Name="com_number" Type="varchar" MaxLength="50" />
+          <Property Name="com_postage" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="com_content" Type="varchar" MaxLength="500" />
+          <Property Name="com_state" Type="int" />
+          <Property Name="com_starttime" Type="datetime" />
+          <Property Name="com_saletime" Type="datetime" />
+          <Property Name="shop_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="isdel" Type="bit" />
+          <Property Name="comment" Type="varchar" MaxLength="500" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="500" />
+          <Property Name="option3" Type="varchar" MaxLength="500" />
+          <Property Name="option4" Type="varchar" MaxLength="500" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="t_f_order">
+          <Key>
+            <PropertyRef Name="orders_ID" />
+          </Key>
+          <Property Name="orders_ID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="consumers_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="shop_id" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="commoditys_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="logs_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Commodity_num" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="adress_ID" Type="varchar" MaxLength="500" />
+          <Property Name="isdel" Type="bit" />
+          <Property Name="happendate" Type="datetime" />
+          <Property Name="comment" Type="varchar" MaxLength="500" />
+          <Property Name="option1" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="option2" Type="varchar" MaxLength="500" />
+          <Property Name="option3" Type="varchar" MaxLength="500" />
+          <Property Name="option4" Type="varchar" MaxLength="500" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="t_f_shops">
+          <Key>
+            <PropertyRef Name="sh_ID" />
+          </Key>
+          <Property Name="sh_ID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sh_name" Type="varchar" MaxLength="500" />
+          <Property Name="sh_content" Type="varchar" MaxLength="500" />
+          <Property Name="isDel" Type="bit" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="500" />
+          <Property Name="option3" Type="varchar" MaxLength="500" />
+          <Property Name="option4" Type="varchar" MaxLength="500" />
+          <Property Name="option5" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="t_x_logistics">
+          <Key>
+            <PropertyRef Name="log_ID" />
+          </Key>
+          <Property Name="log_ID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="comsumer_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="shops_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="log_state" Type="int" />
+          <Property Name="log_starttime" Type="datetime" />
+          <Property Name="comment" Type="varchar" MaxLength="500" />
+          <Property Name="isdel" Type="bit" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="100" />
+          <Property Name="option3" Type="varchar" MaxLength="100" />
+          <Property Name="option4" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="t_x_logistics_state">
+          <Key>
+            <PropertyRef Name="logs_ID" />
+          </Key>
+          <Property Name="logs_ID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="log_time" Type="datetime" />
+          <Property Name="log_adress" Type="varchar" MaxLength="500" />
+          <Property Name="comment" Type="varchar" MaxLength="500" />
+          <Property Name="isdel" Type="bit" />
+          <Property Name="option1" Type="varchar" MaxLength="500" />
+          <Property Name="option2" Type="varchar" MaxLength="100" />
+          <Property Name="option3" Type="varchar" MaxLength="100" />
+          <Property Name="option4" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="NCtecanModelStoreContainer">
+          <EntitySet Name="dl_basic_users" EntityType="Self.dl_basic_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_function" EntityType="Self.sys_function" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_role" EntityType="Self.sys_role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_role_function" EntityType="Self.sys_role_function" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_user_role" EntityType="Self.sys_user_role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_adress" EntityType="Self.t_f_adress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_area" EntityType="Self.t_f_area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_cart" EntityType="Self.t_f_cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_collect" EntityType="Self.t_f_collect" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_commodity" EntityType="Self.t_f_commodity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_order" EntityType="Self.t_f_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_f_shops" EntityType="Self.t_f_shops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_x_logistics" EntityType="Self.t_x_logistics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_x_logistics_state" EntityType="Self.t_x_logistics_state" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NCtecanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="NCtecanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="dl_basic_users" EntityType="NCtecanModel.dl_basic_users" />
+          <EntitySet Name="sys_function" EntityType="NCtecanModel.sys_function" />
+          <EntitySet Name="sys_role" EntityType="NCtecanModel.sys_role" />
+          <EntitySet Name="sys_role_function" EntityType="NCtecanModel.sys_role_function" />
+          <EntitySet Name="sys_user_role" EntityType="NCtecanModel.sys_user_role" />
+          <EntitySet Name="t_f_adress" EntityType="NCtecanModel.t_f_adress" />
+          <EntitySet Name="t_f_area" EntityType="NCtecanModel.t_f_area" />
+          <EntitySet Name="t_f_cart" EntityType="NCtecanModel.t_f_cart" />
+          <EntitySet Name="t_f_collect" EntityType="NCtecanModel.t_f_collect" />
+          <EntitySet Name="t_f_commodity" EntityType="NCtecanModel.t_f_commodity" />
+          <EntitySet Name="t_f_order" EntityType="NCtecanModel.t_f_order" />
+          <EntitySet Name="t_f_shops" EntityType="NCtecanModel.t_f_shops" />
+          <EntitySet Name="t_x_logistics" EntityType="NCtecanModel.t_x_logistics" />
+          <EntitySet Name="t_x_logistics_state" EntityType="NCtecanModel.t_x_logistics_state" />
+        </EntityContainer>
+        <EntityType Name="dl_basic_users">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="userphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userpwd" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="exname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idnum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="shopid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jointime" Type="DateTime" Precision="3" />
+          <Property Name="usercode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="useraddr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="userQQ" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="isDel" Type="Boolean" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sys_function">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pid" Type="Int32" />
+          <Property Name="function" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="control" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="functionname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="parameters" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="order" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="level" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sys_role">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="rolename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sys_role_function">
+          <Key>
+            <PropertyRef Name="fid" />
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="fid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="rid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sys_user_role">
+          <Key>
+            <PropertyRef Name="rid" />
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="rid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="userid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_adress">
+          <Key>
+            <PropertyRef Name="adr_ID" />
+          </Key>
+          <Property Name="adr_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="province" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="area" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="town" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="adress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="conss_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isdel" Type="Boolean" />
+          <Property Name="happendate" Type="DateTime" Precision="3" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_area">
+          <Key>
+            <PropertyRef Name="areaid" />
+          </Key>
+          <Property Name="areaid" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="areacode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="porgareaid" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="level" Type="Int32" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isdel" Type="Boolean" />
+          <Property Name="happendate" Type="DateTime" Precision="3" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_cart">
+          <Key>
+            <PropertyRef Name="cart_ID" />
+          </Key>
+          <Property Name="cart_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cons_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="coms_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="coms_num" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="isdel" Type="Boolean" />
+          <Property Name="happendate" Type="DateTime" Precision="3" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_collect">
+          <Key>
+            <PropertyRef Name="collect_id" />
+          </Key>
+          <Property Name="collect_id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="con_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="commodity_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="isdel" Type="Boolean" />
+          <Property Name="happendate" Type="DateTime" Precision="3" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_commodity">
+          <Key>
+            <PropertyRef Name="com_ID" />
+          </Key>
+          <Property Name="com_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="com_price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="com_belong" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="com_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="com_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="com_postage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="com_content" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="com_state" Type="Int32" />
+          <Property Name="com_starttime" Type="DateTime" Precision="3" />
+          <Property Name="com_saletime" Type="DateTime" Precision="3" />
+          <Property Name="shop_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="isdel" Type="Boolean" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_order">
+          <Key>
+            <PropertyRef Name="orders_ID" />
+          </Key>
+          <Property Name="orders_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="consumers_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="shop_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="commoditys_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="logs_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Commodity_num" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="adress_ID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isdel" Type="Boolean" />
+          <Property Name="happendate" Type="DateTime" Precision="3" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="option2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_f_shops">
+          <Key>
+            <PropertyRef Name="sh_ID" />
+          </Key>
+          <Property Name="sh_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sh_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="sh_content" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isDel" Type="Boolean" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_x_logistics">
+          <Key>
+            <PropertyRef Name="log_ID" />
+          </Key>
+          <Property Name="log_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="comsumer_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="shops_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="log_state" Type="Int32" />
+          <Property Name="log_starttime" Type="DateTime" Precision="3" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isdel" Type="Boolean" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_x_logistics_state">
+          <Key>
+            <PropertyRef Name="logs_ID" />
+          </Key>
+          <Property Name="logs_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="log_time" Type="DateTime" Precision="3" />
+          <Property Name="log_adress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isdel" Type="Boolean" />
+          <Property Name="option1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="option2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="option4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NCtecanModelStoreContainer" CdmEntityContainer="NCtecanEntities">
+          <EntitySetMapping Name="dl_basic_users">
+            <EntityTypeMapping TypeName="NCtecanModel.dl_basic_users">
+              <MappingFragment StoreEntitySet="dl_basic_users">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+                <ScalarProperty Name="userQQ" ColumnName="userQQ" />
+                <ScalarProperty Name="useraddr" ColumnName="useraddr" />
+                <ScalarProperty Name="usercode" ColumnName="usercode" />
+                <ScalarProperty Name="jointime" ColumnName="jointime" />
+                <ScalarProperty Name="shopid" ColumnName="shopid" />
+                <ScalarProperty Name="idnum" ColumnName="idnum" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="exname" ColumnName="exname" />
+                <ScalarProperty Name="userpwd" ColumnName="userpwd" />
+                <ScalarProperty Name="userphone" ColumnName="userphone" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_function">
+            <EntityTypeMapping TypeName="NCtecanModel.sys_function">
+              <MappingFragment StoreEntitySet="sys_function">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="parameters" ColumnName="parameters" />
+                <ScalarProperty Name="functionname" ColumnName="functionname" />
+                <ScalarProperty Name="control" ColumnName="control" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="function" ColumnName="function" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="fid" ColumnName="fid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_role">
+            <EntityTypeMapping TypeName="NCtecanModel.sys_role">
+              <MappingFragment StoreEntitySet="sys_role">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_role_function">
+            <EntityTypeMapping TypeName="NCtecanModel.sys_role_function">
+              <MappingFragment StoreEntitySet="sys_role_function">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+                <ScalarProperty Name="fid" ColumnName="fid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_user_role">
+            <EntityTypeMapping TypeName="NCtecanModel.sys_user_role">
+              <MappingFragment StoreEntitySet="sys_user_role">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_adress">
+            <EntityTypeMapping TypeName="NCtecanModel.t_f_adress">
+              <MappingFragment StoreEntitySet="t_f_adress">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="happendate" ColumnName="happendate" />
+                <ScalarProperty Name="isdel" ColumnName="isdel" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="conss_ID" ColumnName="conss_ID" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="town" ColumnName="town" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="adr_ID" ColumnName="adr_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_area">
+            <EntityTypeMapping TypeName="NCtecanModel.t_f_area">
+              <MappingFragment StoreEntitySet="t_f_area">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="happendate" ColumnName="happendate" />
+                <ScalarProperty Name="isdel" ColumnName="isdel" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="porgareaid" ColumnName="porgareaid" />
+                <ScalarProperty Name="areacode" ColumnName="areacode" />
+                <ScalarProperty Name="areaname" ColumnName="areaname" />
+                <ScalarProperty Name="areaid" ColumnName="areaid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_cart">
+            <EntityTypeMapping TypeName="NCtecanModel.t_f_cart">
+              <MappingFragment StoreEntitySet="t_f_cart">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="happendate" ColumnName="happendate" />
+                <ScalarProperty Name="isdel" ColumnName="isdel" />
+                <ScalarProperty Name="coms_num" ColumnName="coms_num" />
+                <ScalarProperty Name="coms_ID" ColumnName="coms_ID" />
+                <ScalarProperty Name="cons_ID" ColumnName="cons_ID" />
+                <ScalarProperty Name="cart_ID" ColumnName="cart_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_collect">
+            <EntityTypeMapping TypeName="NCtecanModel.t_f_collect">
+              <MappingFragment StoreEntitySet="t_f_collect">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="happendate" ColumnName="happendate" />
+                <ScalarProperty Name="isdel" ColumnName="isdel" />
+                <ScalarProperty Name="commodity_id" ColumnName="commodity_id" />
+                <ScalarProperty Name="con_id" ColumnName="con_id" />
+                <ScalarProperty Name="collect_id" ColumnName="collect_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_commodity">
+            <EntityTypeMapping TypeName="NCtecanModel.t_f_commodity">
+              <MappingFragment StoreEntitySet="t_f_commodity">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="isdel" ColumnName="isdel" />
+                <ScalarProperty Name="shop_ID" ColumnName="shop_ID" />
+                <ScalarProperty Name="com_saletime" ColumnName="com_saletime" />
+                <ScalarProperty Name="com_starttime" ColumnName="com_starttime" />
+                <ScalarProperty Name="com_state" ColumnName="com_state" />
+                <ScalarProperty Name="com_content" ColumnName="com_content" />
+                <ScalarProperty Name="com_postage" ColumnName="com_postage" />
+                <ScalarProperty Name="com_number" ColumnName="com_number" />
+                <ScalarProperty Name="com_name" ColumnName="com_name" />
+                <ScalarProperty Name="com_belong" ColumnName="com_belong" />
+                <ScalarProperty Name="com_price" ColumnName="com_price" />
+                <ScalarProperty Name="com_ID" ColumnName="com_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_order">
+            <EntityTypeMapping TypeName="NCtecanModel.t_f_order">
+              <MappingFragment StoreEntitySet="t_f_order">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="happendate" ColumnName="happendate" />
+                <ScalarProperty Name="isdel" ColumnName="isdel" />
+                <ScalarProperty Name="adress_ID" ColumnName="adress_ID" />
+                <ScalarProperty Name="Commodity_num" ColumnName="Commodity_num" />
+                <ScalarProperty Name="logs_ID" ColumnName="logs_ID" />
+                <ScalarProperty Name="commoditys_ID" ColumnName="commoditys_ID" />
+                <ScalarProperty Name="shop_id" ColumnName="shop_id" />
+                <ScalarProperty Name="consumers_ID" ColumnName="consumers_ID" />
+                <ScalarProperty Name="orders_ID" ColumnName="orders_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_f_shops">
+            <EntityTypeMapping TypeName="NCtecanModel.t_f_shops">
+              <MappingFragment StoreEntitySet="t_f_shops">
+                <ScalarProperty Name="option5" ColumnName="option5" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="isDel" ColumnName="isDel" />
+                <ScalarProperty Name="sh_content" ColumnName="sh_content" />
+                <ScalarProperty Name="sh_name" ColumnName="sh_name" />
+                <ScalarProperty Name="sh_ID" ColumnName="sh_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_x_logistics">
+            <EntityTypeMapping TypeName="NCtecanModel.t_x_logistics">
+              <MappingFragment StoreEntitySet="t_x_logistics">
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="isdel" ColumnName="isdel" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="log_starttime" ColumnName="log_starttime" />
+                <ScalarProperty Name="log_state" ColumnName="log_state" />
+                <ScalarProperty Name="shops_ID" ColumnName="shops_ID" />
+                <ScalarProperty Name="comsumer_ID" ColumnName="comsumer_ID" />
+                <ScalarProperty Name="log_ID" ColumnName="log_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_x_logistics_state">
+            <EntityTypeMapping TypeName="NCtecanModel.t_x_logistics_state">
+              <MappingFragment StoreEntitySet="t_x_logistics_state">
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="isdel" ColumnName="isdel" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="log_adress" ColumnName="log_adress" />
+                <ScalarProperty Name="log_time" ColumnName="log_time" />
+                <ScalarProperty Name="logs_ID" ColumnName="logs_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

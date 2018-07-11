@@ -1,0 +1,151 @@
+﻿@model NCprod.Models.UserRole
+@{
+    ViewBag.Title = "个人资料--资料修改";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .H1 {
+        background-color: #E0EEE0;
+        font-weight: inherit;
+    }
+    /* .H2 { background-color: #99CCFF; color:White; }  */
+    .status {
+        color: Red;
+        text-align: left;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $('#btnReturn').click(function () {
+            history.go(-1);
+        });
+
+        $("#btnSave").click(function () {
+            if ($("#exname").val() == "") {
+                alert("请填写昵称！");
+                return;
+            }
+            if (!confirm("您确认要保存吗？")) {
+                return;
+            }
+            var article = GetArticle();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;utf-8",
+                url: "/People/SaveM",
+                data: "{json:'" + $.toJSON(article) + "'}",
+                dataType: "",
+                success: function (data, textStatus) {
+                    if (data == "success") {
+                        alert("修改成功！");
+                        //window.location.href = "/Home/index";
+                    }
+                    else {
+                        alert(data);
+                    }
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    //HideLoading();
+                },
+                error: function (statusText, responseText) {
+                    //请求出错处理
+                    alert(statusText.responseText);
+                }
+            });
+        });
+    });
+
+    // 获取所有信息
+    function GetArticle() {
+        var article = new Object();
+        article.userid = $("#userid").val();
+        article.username = $("#username").val();
+        article.exname = $("#exname").val();
+        article.userphone = $("#userphone").val();
+        article.idnum = $("#idnum").val();
+        article.userQQ = $("#userQQ").val();
+        article.useraddr = $("#useraddr").val();
+        article.comment = $("#comment").val();
+        return article;
+    }
+</script>
+
+<div style="text-align: left">
+    <a href="#" id="btnReturn" class="easyui-linkbutton" iconcls="icon-back" plain="true">
+        返回
+    </a><span style="color: #E7E7E7">&nbsp;|&nbsp;</span><a href="#" id="btnSave" class="easyui-linkbutton"
+                                                            iconcls="icon-save" plain="true">保存</a>
+    <br />
+    <br />
+</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+
+        <input id="uid" type="text" value="@ViewData["userid"]" style=" display:none;" />
+            <tr>
+                <th align="right" class="H2">
+                    用&nbsp;户&nbsp;ID：
+                </th>
+                <td>
+                    @ViewData["userid"]
+                </td>
+            </tr>
+            <tr>
+                <th align="right" class="H2">
+                    用户昵称：
+                </th>
+                <td width="20%">
+                    <input style="width: 250px; height: 20px;" id="exname" type="text" value="@ViewData["exname"]" />
+                </td>
+                <td class="status" width="40%">
+                    *
+                </td>
+            </tr>
+            <tr>
+                <th align="right" class="H2">
+                    真实姓名：
+                </th>
+                <td>
+                    <input style="width: 250px; height: 20px;" id="username" type="text" value="@ViewData["username"]" />
+                </td>
+            </tr>
+            <tr>
+                <th align="right" class="H1">
+                    用户电话：
+                </th>
+                <td>
+                    <input style="width: 250px; height: 20px;" id="userphone" type="text" value="@ViewData["userphone"]" />
+                </td>
+            </tr>
+            <tr>
+                <th align="right" class="H2">
+                    身份证号：
+                </th>
+                <td>
+                    <input style="width: 250px; height: 20px;" id="idnum" type="text" value="@ViewData["idnum"]" />
+                </td>
+            </tr>
+            <tr>
+                <th align="right" class="H1">
+                    用户地址：
+                </th>
+                <td>
+                    <input style="width: 250px; height: 20px;" id="useraddr" type="text" value="@ViewData["useraddr"]" />
+                </td>
+            </tr>
+            <tr>
+                <th align="right" class="H2">
+                    用户QQ：
+                </th>
+                <td>
+                    <input style="width: 250px; height: 20px;" id="userQQ" type="text" value="@ViewData["userQQ"]" />
+                </td>
+            </tr>
+            <tr>
+                <th align="right" class="H1">
+                    用户备注：
+                </th>
+                <td>
+                    <input style="width: 250px; height: 20px;" id="comment" type="text" value="@ViewData["comment"]" />
+                </td>
+            </tr>
+        </table>

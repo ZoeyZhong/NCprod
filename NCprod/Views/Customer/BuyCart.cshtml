@@ -1,0 +1,186 @@
+﻿@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "消费者管理--我的购物车";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    function loadChange() {
+        var pl = $("p:last");
+        var reg = /(.*[\:\：]\s*)([\+\d\.]+)(\s*元)/g;
+        $(".sy_minus").click(function () {
+            var me = $(this), txt = me.next(":text"), pc = me.closest("p");
+            var val = parseFloat(txt.val());
+            val = val < 1 ? 1 : val;
+            txt.val(val - 1);
+            var price = parseFloat(pc.prev("p").text().replace(reg, '$2')) * txt.val();
+            pc.next("p").text(pc.next("p").text().replace(reg, "$1" + price + "$3"));
+            var sum = 0;
+            $(".p_num").next("p").each(function (i, dom) {
+                sum += parseFloat($(this).text().replace(reg, "$2"));
+            });
+        });
+
+        $(".sy_plus").click(function () {
+            var me = $(this), txt = me.prev(":text"), pc = me.closest("p");
+            var val = parseFloat(txt.val());
+            txt.val(val + 1);
+            var price = parseFloat(pc.prev("p").text().replace(reg, '$2')) * txt.val();
+            pc.next("p").text(pc.next("p").text().replace(reg, "$1" + price + "$3"));
+            var sum = 0;
+
+            var y = pc.prev("p").text();
+            var x = $(".p_num").next("p");
+
+            $(".p_num").next("p").each(function (i, dom) {
+                sum += parseFloat($(this).text().replace(reg, "$2"));
+            });
+        });
+    }
+    $(function () {
+        setTimeout('loadChange()', 100);
+    });
+
+    function onRowSelected_delete(com_ID) {
+        if (confirm('确认删除?')) {
+            $.post("/Customer/DeleteCart/", "id=" + com_ID, function (result) {
+                if (result.Total > 0) {
+                    $('#message').css("display", "block");
+                    var griddata = $('#ALLPRODUCTS').data('tGrid');
+                    griddata.dataBind(result.Data);
+                    setInterval(displaymessage, 3000);
+                }
+                else {
+                    $('msg').html('删除失败！');
+                    $('#message').css("display", "block");
+                }
+
+            });
+        }
+    }
+    function Jiesuan(i){
+            $.post("/Customer/jiesuanCart/", "id=" + i, function (result) {
+                if (1) {
+                    window.location.href = "/Customer/Adress";
+                }
+
+            });
+    }
+    function displaymessage() {
+        $('#message').css("display", "none");
+    }
+    function Calculate(price, obj, id, theid) {
+        var sum = parseFloat($("#total").text());
+        if (!obj.checked)   //确认商品是否选中
+            price = -price;
+        var num = $('#' + id).val(); //获得商品数量
+        var sum1 = parseFloat($("#total1" + id).text());
+        sum1 = parseFloat(price) * parseFloat(num);
+        sum += parseFloat(price) * parseFloat(num);   
+        $("#total").html(sum);          
+        $("#total1" + id).html(sum1);
+        //确认订单，修改变量方便后面生成订单，option1==1
+        if (obj.checked) {
+            var article = new Object();
+            article.num = num;
+            article.id = theid;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;utf-8",
+                url: "/Customer/GetPro",
+                data: "{json:'" + JSON.stringify(article) + "'}",
+                dataType: "",
+                success: function (data, textStatus) {
+                    if (data == "existed") {
+                    }
+                    else if (data == "success") {
+                    }
+                    else {
+                    }
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    //HideLoading();
+                },
+                error: function (statusText, responseText) {
+                    //请求出错处理
+                    alert(statusText.responseText);
+                }
+            });
+        }
+
+
+
+    }
+    function Calculate1(price, isAdd, id) {
+        var sum = parseFloat($("#total").text());
+        var sum1 = parseFloat($("#total1" + id).text());
+        var model = $("#" + id);
+        if (model[0].checked) {
+            if (isAdd) {
+                sum += parseFloat(price);
+                sum1 += parseFloat(price);
+            }
+            else {
+                sum -= parseFloat(price);
+                sum1 -= parseFloat(price);
+            }
+
+            $("#total").html(sum);
+            $("#total1" + id).html(sum1);
+
+            //$("#total1_"+id).html(sum);
+        }
+    }
+</script>
+
+@(Html.Telerik().Grid<Commdity2>().Name("ALLPRODUCTS")
+                    .Columns(columns =>
+                        {
+                            columns.Bound(o => o.com_ID).Title("操作")
+                                .ClientTemplate("<input type=\"checkbox\" id=\"chk_<#= com_ID #>\" onclick=\"Calculate(<#= com_price #>,this,'id_<#= cart_ID #>',<#= cart_ID #>)\">")
+                                .Width(80);
+                            columns.Bound(o => o.cart_ID).Title("购物车编号").Hidden();
+                            columns.Bound(o => o.com_ID).Title("商品编号").Hidden();
+                            columns.Bound(o => o.com_content).Title("图片").Hidden();
+                            columns.Bound(o => o.com_ID).Title("图片")
+                         .ClientTemplate("<a href=\"#\"  title='图片'\">" +
+                        "<img style=\"width:80px;height:80px\" src='<#= com_content #>'></a>")
+                                    .Width(80);
+                            columns.Bound(o => o.com_name).Title("名称").Width(100);
+                            columns.Bound(o => o.com_price).Title("单价(￥)").Width(100);
+                            columns.Bound(o => o.option2).Title("重量").Width(100);
+                            columns.Bound(o => o.com_belongp).Title("商家电话").Width(100);
+                            columns.Bound(o => o.com_belongu).Title("商家姓名").Width(100);
+                            columns.Bound(o => o.com_postage).Title("邮费（￥）").Width(100);
+                            columns.Bound(o => o.coms_num).Title("数量").Hidden();
+                            columns.Bound(o => o.cart_ID).Title("数量")
+                             .ClientTemplate("<input class=\"sy_minus\" id=\"sy_minus_gid2\" onclick=\"Calculate1(<#= com_price #>,false,'chk_<#= cart_ID #>')\" style=\" width:20px; height:30px;border:1px solid #ccc;margin-top: -10px;\" type=\"button\" value=\"-\" name=\"\"  />" +
+                                            "<input class=\"sy_num\" id=\"id_<#= cart_ID #>\" name=\"number1\" type=\"text\" value=\'<#= coms_num #>\' style=\" width:30px; text-align:center; border:1px solid #ccc;\" />" +
+                                            "<input class=\"sy_plus\" id=\"sy_plus_gid2\" onclick=\"Calculate1(<#= com_price #>,true,'chk_<#= cart_ID #>')\" style=\" width:20px; height:30px;border:1px solid #ccc;margin-top: -10px;\" type=\"button\" value=\"+\" />")
+                                        .Width(100);
+                           // columns.Bound(o => o.cart_ID).Title("价格")
+                           //.ClientTemplate("<span style=\"color:red;\" id=\"total1id<#= cart_ID #>\">0</span>元")
+                           //.Width(10);
+                            columns.Bound(o => o.com_ID).Title("操作")
+                            .ClientTemplate("<a href=\"#\"  title='删除' onclick=\"onRowSelected_delete(<#= cart_ID #>)\">" +
+                            "<img style=\"width:20px;height:20px;\" src='/PIC/back/delete.png'></a>")
+                            .Width(10);
+                        })
+                                .DataBinding(dataBinding => dataBinding.Ajax().Select("GProductList", "Customer"))
+                            .Selectable()
+                            .Pageable()
+                            .Footer(true)
+)
+<br />
+<div style="font-size:18px">合计（不含运费）：￥<span style="color:red;" id="total">0</span>元</div>
+<div id="message" class="alert alert-info" style=" margin-right: 50px;
+        margin-top: 20px; float: right; width: 10%"><button style="width: 120%" onclick="Jiesuan(1)">结算</button></div>
+<div style="height: 80px;">
+    <div id="message" class="alert alert-info" style="display: none; margin-right: 50px;
+        margin-top: 20px; float: right; width: 30%">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h4 id="msg">
+            删除成功！
+        </h4>
+    </div>
+</div>

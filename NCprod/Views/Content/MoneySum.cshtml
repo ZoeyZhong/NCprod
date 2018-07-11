@@ -1,0 +1,74 @@
+﻿@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "交易情况统计--资金汇总";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+    });
+    
+    function select() {
+        theotherid = $("#theotherid").val();
+        if (theotherid == "")
+        {
+            alert("请输入查询商家ID！");
+            
+        }
+        else if (confirm('确认查询?')) {
+            $.post("/Content/SelectSid/", "id=" + theotherid, function (result) {
+                if (result.Total > 0) {
+                    $('#massage').css("display", "none");
+                    var griddata = $('#ALLPRODUCTS').data('tGrid');
+                    griddata.dataBind(result.Data);
+                    setInterval(displaymessage, 3000);
+
+                }
+                else {
+                    alert("查询失败或无数据！");
+                }
+
+            });
+        }
+    }
+
+</script>
+<br />
+<div style="left:20px" >
+    商家ID：
+    <input id="theotherid" type="text" value="" />&nbsp;<button style="width: 100px;margin-top:-8px" onclick="select()">查询</button>
+</div>
+
+
+@(Html.Telerik().Grid<Commdity5>().Name("ALLPRODUCTS")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(o => o.orderid).Title("订单ID").Hidden();
+                        columns.Bound(o => o.com_ID).Title("商品ID").Hidden();
+                        columns.Bound(o => o.con_id).Title("消费者ID").Hidden();
+                        columns.Bound(o => o.com_content).Title("图片").Hidden();
+                        columns.Bound(o => o.com_ID).Title("图片")
+                         .ClientTemplate("<a href=\"#\"  title='图片'>" +
+                        "<img style=\"width:80px;height:80px\" src='<#= com_content #>'></a>")
+                                    .Width(80);
+                        columns.Bound(o => o.com_name).Title("商品名称").Width(100);
+                        columns.Bound(o => o.commodity_num).Title("商品数量").Width(100);
+                        columns.Bound(o => o.com_price).Title("交易金额").Width(100);
+                        columns.Bound(o => o.com_postage).Title("邮费").Width(100);
+                        columns.Bound(o => o.con_id).Title("消费者ID").Width(100);
+                        columns.Bound(o => o.con_name).Title("消费者名字").Width(100);
+                        columns.Bound(o => o.shop_id).Title("商家ID").Width(100);
+                        columns.Bound(o => o.logs_id).Title("收货人").Width(100);
+                        columns.Bound(o => o.adress).Title("收货地址").Width(100);
+                        columns.Bound(o => o.happendate).Title("下单时间").Width(100);
+                        columns.Bound(o => o.option3).Title("快递单号").Width(100);
+                        columns.Bound(o => o.option4).Title("快递公司").Width(100);
+                    })
+                                .DataBinding(dataBinding => dataBinding.Ajax().Select("MoneySumList", "Content"))
+                            .Selectable()
+                            .Pageable()
+                            .Footer(true)
+)
+<br />
+<div id="massage" style="font-size:18px">合计（商品价格+运费）：￥<span style="color:red;" id="total">@ViewData["sum"]</span>元</div>

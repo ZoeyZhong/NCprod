@@ -1,0 +1,80 @@
+﻿@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "消费者管理--我的订单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+
+    function onRowSelected_wuliu(orderid) {
+        window.location.href = "/Customer/MyWuliu?id=" + orderid;
+    }
+    function onRowSelected_enter(orderid) {
+        if (confirm('确认收货?')) {
+            $.post("/Customer/EnterP/", "id=" + orderid, function (result) {
+                if (1) {
+                    //$('#message').css("display", "block");
+                    alert("收货成功！");
+                    window.location.reload();
+                    //var griddata = $('#ALLPRODUCTS').data('tGrid');
+                    //griddata.dataBind(result.Data);
+                    //setInterval(displaymessage, 3000);
+                }
+                else {
+                    $('msg').html('确认收货失败！');
+                    $('#message').css("display", "block");
+                }
+
+            });
+        }
+    }
+    function displaymessage() {
+        $('#message').css("display", "none");
+    }
+</script>
+
+@(Html.Telerik().Grid<Commdity5>().Name("ALLPRODUCTS")
+                    .Columns(columns =>
+                        {
+                            columns.Bound(o => o.orderid).Title("订单ID").Hidden();
+                            columns.Bound(o => o.com_ID).Title("商品ID").Hidden();
+                            columns.Bound(o => o.con_id).Title("消费者ID").Hidden();
+                            columns.Bound(o => o.com_content).Title("图片").Hidden();
+                            columns.Bound(o => o.com_ID).Title("图片")
+                             .ClientTemplate("<a href=\"#\"  title='图片'\">" +
+                            "<img style=\"width:80px;height:80px\" src='<#= com_content #>'></a>")
+                                        .Width(80);
+                            columns.Bound(o => o.com_name).Title("商品名称").Width(100);
+                            columns.Bound(o => o.commodity_num).Title("商品数量").Width(100);
+                            columns.Bound(o => o.option5).Title("商品重量").Width(100);
+                            columns.Bound(o => o.com_price).Title("交易金额").Width(100);
+                            columns.Bound(o => o.com_postage).Title("邮费").Width(100);
+                            columns.Bound(o => o.logs_id).Title("收货人").Width(100);
+                            columns.Bound(o => o.adress).Title("收货地址").Width(100);
+                            columns.Bound(o => o.happendate).Title("下单时间").Width(100);
+                            columns.Bound(o => o.option1).Title("商家电话").Width(100);
+                            columns.Bound(o => o.con_name).Title("商家名字").Width(100);
+                            columns.Bound(o => o.com_ID).Title("物流")
+                            .ClientTemplate("<a href=\"#\"  title='我的物流' onclick=\"onRowSelected_wuliu(<#= orderid #>)\">" +
+                            "<img style=\"width:40px;height:30px\" src='/PIC/back/wuliu.png'></a>")
+                            .Width(10);
+                            columns.Bound(o => o.com_ID).Title("操作")
+                            .ClientTemplate("<a href=\"#\"  title='确认收货' onclick=\"onRowSelected_enter(<#= orderid #>)\">" +
+                            "<img src='/PIC/back/enter.png'></a>")
+                            .Width(10);
+                        })
+                                .DataBinding(dataBinding => dataBinding.Ajax().Select("OProductList", "Customer"))
+                            .Selectable()
+                            .Pageable()
+                            .Footer(true)
+)
+
+<div style="height: 80px;">
+    <div id="message" class="alert alert-info" style="display: none; margin-right: 50px;
+        margin-top: 20px; float: right; width: 30%">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h4 id="msg">
+            收货成功！
+        </h4>
+    </div>
+</div>

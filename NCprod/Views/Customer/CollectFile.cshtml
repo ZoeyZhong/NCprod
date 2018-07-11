@@ -1,0 +1,85 @@
+﻿@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "消费者管理--我的收藏夹";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+    });
+
+    function onRowSelected_join(com_ID) {
+        if (confirm('确认加入购物车?')) {
+            $.post("/Customer/JoinCart/", "id=" + com_ID, function (result) {
+                if (result=="success") {
+                    confirm('成功加入购物车！')
+                }
+                else {
+                    confirm('加入失败，请重试！')
+                }
+
+            });
+        }
+    }
+
+    function onRowSelected_delete(com_ID) {
+        if (confirm('确认删除?')) {
+            $.post("/Customer/DeleteFile/", "id=" + com_ID, function (result) {
+                if (result.Total > 0) {
+                    $('#message').css("display", "block");
+                    var griddata = $('#ALLPRODUCTS').data('tGrid');
+                    griddata.dataBind(result.Data);
+                    setInterval(displaymessage, 3000);
+                }
+                else {
+                    $('msg').html('删除失败！');
+                    $('#message').css("display", "block");
+                }
+
+            });
+        }
+    }
+    function displaymessage() {
+        $('#message').css("display", "none");
+    }
+
+</script>
+
+@(Html.Telerik().Grid<Commdity>().Name("ALLPRODUCTS")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(o => o.com_ID).Title("编号").Hidden();
+                        columns.Bound(o => o.com_content).Title("图片").Hidden();
+                        columns.Bound(o => o.com_ID).Title("图片")
+                         .ClientTemplate("<a href=\"#\"  title='图片'\">" +
+                        "<img style=\"width:80px;height:80px\" src='<#= com_content #>'></a>")
+                                    .Width(80);
+                        columns.Bound(o => o.com_name).Title("名称").Width(100);
+                        columns.Bound(o => o.com_price).Title("价格").Width(100);
+                        columns.Bound(o => o.option2).Title("重量").Width(100);
+                        columns.Bound(o => o.com_postage).Title("邮费").Width(100);
+                        columns.Bound(o => o.com_belongu).Title("商家名称").Width(100);
+                        columns.Bound(o => o.com_belongp).Title("商家电话").Width(100);
+
+                        columns.Bound(o => o.com_ID).Title("操作")
+                            .ClientTemplate("<a href=\"#\"  title='删除' onclick=\"onRowSelected_delete(<#= com_ID #>)\">" +
+                            "<img style=\"width:20px;height:20px;\" src='/PIC/back/delete.png'></a>&nbsp;|&nbsp;" +
+                            "<a href=\"#\" onclick=\"onRowSelected_join(<#= com_ID #>)\" title='加入购物车'>" +
+                            "<img style=\"width:20px;height:20px;\" src='/PIC/back/joincart.png'></a>")
+                            .Width(80);
+                    })
+                            .DataBinding(dataBinding => dataBinding.Ajax().Select("ProductList", "Customer"))
+                            .Selectable()
+                            .Pageable()
+                            .Footer(true)
+)
+<div style="height: 80px;">
+    <div id="message" class="alert alert-info" style="display: none; margin-right: 50px;
+        margin-top: 20px; float: right; width: 30%">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h4 id="msg">
+            删除成功！
+        </h4>
+    </div>
+</div>

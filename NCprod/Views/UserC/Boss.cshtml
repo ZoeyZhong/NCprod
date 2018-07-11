@@ -1,0 +1,78 @@
+﻿@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "人员管理--商家管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+    });
+
+
+    function onRowSelected_delete(userid) {
+        if (confirm('确认解冻?')) {
+            $.post("/UserC/JieD1/", "id=" + userid)
+        } location.reload();
+        confirm('解冻成功！');
+
+    }
+    function onRowSelected_dongjie(userid) {
+        if (confirm('确认解冻?')) {
+            $.post("/UserC/DongJ1/", "id=" + userid)
+        } location.reload();
+        confirm('解冻成功！');
+
+    }
+
+    function select() {
+        theotherid = $("#theotherid").val();
+        if (theotherid == "") {
+            alert("请输入查询商家ID！");
+
+        }
+        else if (confirm('确认查询?')) {
+            $.post("/UserC/SelectSid/", "id=" + theotherid, function (result) {
+                if (result.Total > 0) {
+                    var griddata = $('#ALLTUSER').data('tGrid');
+                    griddata.dataBind(result.Data);
+                    setInterval(displaymessage, 3000);
+
+                }
+                else {
+                    alert("查询失败或无数据！");
+                }
+
+            });
+        }
+    }
+</script>
+<br />
+<div style="left:20px">
+    商家ID：
+    <input id="theotherid" type="text" value="" />&nbsp;<button style="width: 100px;margin-top:-8px" onclick="select()">查询</button>
+</div>
+@(Html.Telerik().Grid<UserRole1>().Name("ALLTUSER")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(o => o.userid).Title("ID").Width(100);
+                        columns.Bound(o => o.username).Title("姓名").Width(100);
+                        columns.Bound(o => o.exname).Title("昵称").Width(100);
+                        columns.Bound(o => o.userphone).Title("电话号码").Width(100);
+                        columns.Bound(o => o.idnum).Title("身份证号").Width(100);
+                        columns.Bound(o => o.jointime).Title("注册时间").Width(100);
+                        columns.Bound(o => o.useraddr).Title("地址").Width(100);
+                        columns.Bound(o => o.userQQ).Title("QQ").Width(100);
+                        columns.Bound(o => o.isDel).Title("冻结").Width(100);
+                        columns.Bound(o => o.userid).Title("操作")
+                        .ClientTemplate("<a href=\"#\"   onclick=\"onRowSelected_dongjie(<#= userid #>)\"title='冻结'>" +
+                        "<img src='/PIC/back/padlock6.gif'></a>&nbsp;|&nbsp;" +
+                        "<a href=\"#\" onclick=\"onRowSelected_delete(<#= userid #>)\" title='解冻'>" +
+                        "<img src='/PIC/back/padlock7.png'></a>")
+                        .Width(80);
+                    })
+                                .DataBinding(dataBinding => dataBinding.Ajax().Select("UserList1", "UserC"))
+                            .Selectable()
+                            .Pageable()
+                            .Footer(true)
+)

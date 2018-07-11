@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "我的管理--我的物流";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnReturn").click(function () {
+            window.location.href = "/Customer/MyOrder/";
+        });
+    });
+
+</script>
+<div id="Detail">
+    <div style="width: 600px; margin-left: 30px;" id="form-paper">
+        <div style="text-align: left">
+            <a href="#" id="btnReturn" class="easyui-linkbutton" iconcls="icon-back" plain="true">
+                返回
+            </a>
+            <br />
+            <br />
+        </div>
+        
+        <table>
+            <tr>
+                <th>
+                    物流号：
+                </th>
+                <td>
+                    <input id="option3" type="text" value="@ViewData["option3"]"/>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    物流公司：
+                </th>
+                <td>
+                    <input id="option4" type="text" value="@ViewData["option4"]" />
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    温馨提示：
+                </th>
+                <td>
+                    <p>请自助查询快递进程，谢谢合作！<a href="http://www.ckd8.com/">点击此查询</a></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

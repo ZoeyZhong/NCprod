@@ -1,0 +1,330 @@
+﻿@{
+    ViewBag.Title = "我的管理--订单结算";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+<link href="../../CSS/index/font-awesome.min.css" rel="stylesheet">
+<style type="text/css">
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnReturn").click(function () {
+            history.go(-1);
+        });
+
+        $("#btnSave").click(function () {
+            if ($("#adress").val() == "") {
+                alert("请填写收货地址");
+                return;
+            }
+            if ($("#comment").val() == "") {
+                alert("请填写收货人");
+                return;
+            }
+            var article = GetArticle();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;utf-8",
+                url: "/Customer/AddAdress",
+                data: "{json:'" + $.toJSON(article) + "'}",
+                dataType: "",
+                success: function (data, textStatus) {
+                    if (data == "existed") {
+                        alert("保存失败，请重试！");
+                        $('#adress').val('');
+                        $('#comment').val('');
+                    }
+                    else if (data == "success") {
+                        alert("保存成功！");
+                        window.location.reload();
+                    }
+                    else {
+                        alert(data);
+                    }
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    //HideLoading();
+                },
+                error: function (statusText, responseText) {
+                    //请求出错处理
+                    alert(statusText.responseText);
+                }
+            });
+        });
+    });
+    // 获取所有信息
+    function GetArticle() {
+        var article = new Object();
+        article.adress = $("#adress").val();
+        article.comment = $("#comment").val();
+        return article;
+    }
+    function displaymessage() {
+        $('#message1').css("display", "block");
+    }
+    function nonemessage() {
+        $('#message1').css("display", "none");
+    }
+
+    function delect(adr_ID) {
+        if (confirm('确认删除?')) {
+            $.post("/Customer/DeleteAdress/", "id=" + adr_ID, function (result) {
+                if (result.Total > 0) {
+                    confirm('删除成功！')
+                    window.location.reload();
+                }
+                else {
+                    confirm('删除失败，请重试！')
+                }
+
+            });
+        }
+    }
+
+</script>
+<br />
+<div>
+    <div style="width: 1000px; margin-left: 30px;" id="form-paper">
+        <div style="text-align: left">
+            <a href="#" id="btnReturn" class="easyui-linkbutton" iconcls="icon-back" plain="true">
+                返回
+            </a>
+
+            <div style="margin-bottom: 5px; padding: 5px; border: 1px solid #ddd">
+                收货地址：
+                <span style="color: #E7E7E7">&nbsp;|&nbsp;</span>
+                <a onclick="displaymessage()" id="btnAdd" class="easyui-linkbutton" iconcls="icon-add" plain="true">
+                    新增地址
+                </a>
+
+                <br />
+                <br />
+                <table>
+                    <tr>
+                        <td style="width:50px">
+                            选择
+                        </td>
+                        <td style="width:500px">
+                            收货地址
+                        </td>
+                        <td style="width:100px">
+                            收货人
+                        </td>
+                        <td style="width:200px">
+                            发生时间
+                        </td>
+                        <td style="width:100px">
+                            操作
+                        </td>
+                    </tr>
+                    @{if (true)
+                    {
+                        dl_basic_users user = Session["user"] as dl_basic_users;
+                        decimal userid1 = user.userid;
+                        var db = new NCtecanEntities();
+                        var root = (from a in db.t_f_adress
+                                    where a.isdel == false && a.conss_ID == userid1
+                                    select new
+                                    {
+                                        a.adr_ID,//地址id
+                                        a.adress,//地址
+                                        a.happendate,//发生时间
+                                        a.comment//收货人
+                                    }).Distinct().OrderBy(ob => ob.adr_ID);
+                        foreach (var p in root)
+                        {
+                            <tr>
+                                <td style="width:30px">
+                                    <input value="@(p.adr_ID)" type="radio" name="iCheck" />
+                                </td>
+                                <td style="width:500px">
+                                    @(p.adress)
+                                </td>
+                                <td style="width:80px">
+                                    @(p.comment)（收）
+                                </td>
+                                <td style="width:50px">
+                                    @(p.happendate)
+                                </td>
+                                <td style="width:80px">
+                                    <a href="#" class="easyui-linkbutton" plain="true" onclick="delect(@(p.adr_ID))">
+                                        <i class="fa fa-trash-o"></i>
+                                        删除
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }}
+                </table>
+            </div>
+        </div>
+
+        <div style="height: 100px;z-index: 100; position: absolute; width: 600px; text-align: left;top:100px;left:270px ">
+            <div id="message1" class="alert alert-info" style="display: none; margin-right: 50px;margin-top: 20px; float: left; width: 60%;margin-bottom:20px">
+                <a class="close" href="#" onclick="nonemessage()">&times;</a>
+                <table>
+                    <tr>
+                        <th>
+                            收货地址：
+                        </th>
+                        <td>
+                            <input id="adress" type="text" value="" /><span style="color: Red;">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            收货人：
+                        </th>
+                        <td>
+                            <input id="comment" type="text" value="" /><span style="color: Red;">*</span>
+                        </td>
+                        <td>
+                            <button id="btnSave">保存</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div style="width: 1000px; margin-left: 30px;" id="form-paper">
+        <div style="text-align: left">
+            <div style="margin-bottom: 5px; padding: 5px; border: 1px solid #ddd">
+                <table class="gridtable">
+                    <tr>
+                        <th style="width:250px">
+                            店铺宝贝
+                        </th>
+                        <th style="width:250px">
+                            店铺名称
+                        </th>
+                        <th style="width:100px">
+                            单价（元）
+                        </th>
+                        <th style="width:100px">
+                            数量
+                        </th>
+                        <th style="width:200px">
+                            小计（元）
+                        </th>
+                        <th style="width:200px">
+                            邮费（元）
+                        </th>
+                        <th style="width:200px">
+                            合计（元）
+                        </th>
+                    </tr>
+                    @{if (true)
+                    {
+                        dl_basic_users user = Session["user"] as dl_basic_users;
+                        decimal userid1 = user.userid;
+                        var db = new NCtecanEntities();
+                        var root = (from a in db.t_f_cart
+                                    join b in db.t_f_commodity on a.coms_ID equals b.com_ID
+                                    where a.option1 == "1" && a.cons_ID == userid1
+                                    select new Commdity2
+                                    {
+                                        com_ID = a.coms_ID,//商品ID
+                                        cart_ID = a.cart_ID,//购物车ID
+                                        com_price = b.com_price,//商品价格
+                                        com_postage = b.com_postage,//商品邮费
+                                        com_name = b.com_name,//商品名称
+                                        com_content = b.com_content, //商品图片
+                                        option2 = b.option2,//商品重量
+                                        coms_num = a.coms_num//商品数量
+                                    }).Distinct().OrderBy(ob => ob.cart_ID);
+                        foreach (var p in root)
+                        {
+                            <tr>
+                                <td>
+                                    <img style="width:100px;height:100px" src="@(p.com_content)" />
+                                </td>
+                                <td>
+                                    @(p.com_name)
+                                </td>
+                                <td>
+                                    @(p.com_price)元
+                                </td>
+                                <td>
+                                    @(p.coms_num)
+                                </td>
+                                <td>
+                                    @(p.coms_num * p.com_price)元
+                                </td>
+                                <td>@(p.com_postage)元</td>
+                                <td>@(p.coms_num * p.com_price + p.com_postage)元</td>
+                            </tr>
+                        }
+                    }}
+                </table>
+            </div>
+        </div>
+        <div style="font-size:18px">合计：￥<span style="color:red;" id="total">@(ViewData["sum"])</span>元</div>
+        <div id="message" class="alert alert-info" style=" margin-right: 50px;margin-top: 20px; float: right; width: 10%"><button style="width: 120%" onclick="Dingdan()">提交订单</button></div>
+    </div>
+</div>
+<script type="text/javascript">
+    function Dingdan() {
+        var id = document.getElementsByName("iCheck");
+        var chk;
+        for (var i = 0; i < id.length; i++) {
+            if (id[i].checked) {
+                chk = id[i];
+                break;
+            }
+        }
+        if (chk == null) {
+            alert("请选择或新增地址！");
+            return;
+        }
+        if (confirm('确认购买?')) {
+            $.post("/Customer/SaveOrder/", "id=" + chk.value, function (result) {
+                if (result == "success") {
+                    confirm('购买成功！')
+                    window.location.href = "/Customer/MyOrder"
+                }
+                else {
+                    confirm('购买成功！')
+                }
+
+            });
+        }
+    }
+</script>
+
+
+
+
+
+
+

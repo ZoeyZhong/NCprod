@@ -1,0 +1,322 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+<!doctype html>
+<!--[if IE 9 ]><html class="ie9" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <title>重庆南川土特产在线交易平台</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--meta info-->
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="icon" type="image/ico" href="../../PIC/index_m/fav.ico">
+
+
+   
+    <!--stylesheet include-->
+    <link rel="stylesheet" type="text/css" media="all" href="../../CSS/index/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../../CSS/index/camera.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../../CSS/index/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../../CSS/index/owl.transitions.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../../CSS/index/jquery.custom-scrollbar.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../../CSS/index/style.css">
+    <!--font include-->
+    <link href="../../CSS/index/font-awesome.min.css" rel="stylesheet">
+
+    <script type="text/javascript">
+
+        function tomassage() {
+            if ($("#cf_message").val() == "") {
+                alert("请填写意见……");
+                return;
+            }
+            var content = $("#cf_message").val();
+            if (confirm('确认提交?')) {
+                $.post("/Content/ToMassage/", "content=" + content, function (result) {
+                    if (result=="success") {
+                        alert("提交成功!");
+                    }
+                    else {
+                        alert("提交失败!");
+                    }
+
+                });
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!--boxed layout-->
+    <div class="boxed_layout relative w_xs_auto">
+        <!--[if (lt IE 9) | IE 9]>
+            <div style="background:#fff;padding:8px 0 10px;">
+            <div class="container" style="width:1170px;"><div class="row wrapper"><div class="clearfix" style="padding:9px 0 0;float:left;width:83%;"><i class="fa fa-exclamation-triangle scheme_color f_left m_right_10" style="font-size:25px;color:#e74c3c;"></i><b style="color:#e74c3c;">Attention! This page may not display correctly.</b> <b>You are using an outdated version of Internet Explorer. For a faster, safer browsing experience.</b></div><div class="t_align_r" style="float:left;width:16%;"><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode" class="button_type_4 r_corners bg_scheme_color color_light d_inline_b t_align_c" target="_blank" style="margin-bottom:2px;">Update Now!</a></div></div></div></div>
+        <![endif]-->
+        <!--页眉-->
+        <header role="banner">
+            <!--header top part-->
+            <section class="h_top_part">
+                <div class="container">
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-4 col-sm-5 t_xs_align_c">
+                            @if(Session["user"]==null)
+                            {
+                              <p class="f_size_small">欢迎！您可以	<a href="../Home/Logon">登录</a> 或 <a href="../Home/Logon">免费注册</a> </p>
+
+                            }
+                            else
+                            {
+                              <p class="f_size_small"><a href="../Home/Index">@((Session["user"] as NCprod.Models.dl_basic_users).exname)</a> 欢迎登陆！ </p>
+                            }
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-2 t_align_c t_xs_align_c">
+                            <p class="f_size_small">热线电话: <b class="color_dark">(023) 1234-4567</b></p>
+                        </div>
+                        <nav class="col-lg-4 col-md-4 col-sm-5 t_align_r t_xs_align_c">
+                            <ul class="d_inline_b horizontal_list clearfix f_size_small users_nav">
+                                <li><a href="../../Home/Index" target="_blank" class="default_t_color">我的中心</a></li>
+                                <li><a href="../../Customer/MyOrder" target="_blank" class="default_t_color">订单</a></li>
+                                <li><a href="../../Front/Aboutus" class="default_t_color">帮助</a></li>
+                                <li><a href="../../Front/Aboutus" class="default_t_color">关于我们</a></li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+
+            <!--header bottom part-->
+            <section class="h_bot_part container">
+                <div class="clearfix row">
+                    <div class="col-lg-6 col-md-6 col-sm-4 t_xs_align_c">
+                        <a href="../Front/Index" class="logo m_xs_bottom_15 d_xs_inline_b">
+                            <img src="../../PIC/index_m/logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-8 t_align_r t_xs_align_c">
+                        <ul class="d_inline_b horizontal_list clearfix t_align_l site_settings">
+                            <!--like-->
+                            <li style=" margin-left: 12px; font-family: \5FAE\8F6F\96C5\9ED1, \9ED1\4F53; color: #999999;">
+                                <img src="../../PIC/index_m/top_ico11.png" />
+                                <br />原产地
+                            </li>
+                            <li style="float: left; margin-left: 12px; font-family: \5FAE\8F6F\96C5\9ED1, \9ED1\4F53; color: #999999;">
+                                <img src="../../PIC/index_m/top_ico12.png" />
+                                <br />有保障
+                            </li>
+                            <li style="float: left; margin-left: 12px; font-family: \5FAE\8F6F\96C5\9ED1, \9ED1\4F53; color: #999999;">
+                                <img src="../../PIC/index_m/top_ico13.png" />
+                                <br />有信誉
+                            </li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                            @if(Session["user"] == null)
+                            {
+                            <li>
+                                <a role="button" href="../../Home/Index" class="button_type_1 color_dark d_block bg_light_color_1 r_corners tr_delay_hover box_s_none"><i class="fa fa-heart-o f_size_ex_large"></i><span class="count circle t_align_c">0</span></a>
+                            </li>
+                                @*<li class="m_left_5">
+                                <a role="button" href="#" class="button_type_1 color_dark d_block bg_light_color_1 r_corners tr_delay_hover box_s_none"><i class="fa fa-files-o f_size_ex_large"></i><span class="count circle t_align_c">0</span></a>
+                            </li>*@
+                            <li class="m_left_5 relative container3d" id="shopping_button">
+                                <a role="button" href="#" class="button_type_3 color_light bg_scheme_color d_block r_corners tr_delay_hover box_s_none">
+                                    <span class="d_inline_middle shop_icon m_mxs_right_0">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="count tr_delay_hover type_2 circle t_align_c">0</span>
+                                    </span>
+                                    <b class="d_mxs_none">0</b>
+                                </a>
+                            </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a role="button" href="../../Customer/CollectFile" class="button_type_1 color_dark d_block bg_light_color_1 r_corners tr_delay_hover box_s_none"><i class="fa fa-heart-o f_size_ex_large"></i><span id="numbercolle" class="count circle t_align_c"></span></a>
+                            </li>
+                            @*<li class="m_left_5">
+                                <a role="button" href="../../Customer/MyOrder" class="button_type_1 color_dark d_block bg_light_color_1 r_corners tr_delay_hover box_s_none"><i class="fa fa-files-o f_size_ex_large"></i><span class="count circle t_align_c"></span></a>
+                            </li>*@
+                            <li class="m_left_5 relative container3d" id="shopping_button">
+                                <a href="../../Customer/BuyCart" role="button"  class="button_type_3 color_light bg_scheme_color d_block r_corners tr_delay_hover box_s_none">
+                                    <span class="d_inline_middle shop_icon m_mxs_right_0">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="count tr_delay_hover type_2 circle t_align_c" id="numbercart"></span>
+                                    </span>
+                                    <b class="d_mxs_none" id="catprice"></b>
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!--main menu container-->
+            
+        </header>
+
+        @RenderBody()
+
+        <!--页尾-->
+        <footer id="footer">
+            <div class="footer_top_part">
+                <div class="container">
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-3 m_xs_bottom_30">
+                            <h3 class="color_light_2 m_bottom_20">关于我们</h3>
+                            <p class="m_bottom_25">
+                                南川区位于重庆南部，地处渝黔、渝湘经济带交汇点，
+                                属重庆城市发展新区，东南与贵州省道真、正安、桐梓县接壤，东北与武隆县为邻，
+                                北接涪陵区，西连巴南区、綦江区。
+                                境内的金佛山被誉为“南方如初佛地，巴蜀第一名山”，
+                                素有“北有峨眉、南有金佛，东朝普陀、西拜金佛”之说。
+                                先后被评为全国文化先进区、中国楹联文化之乡、民间歌舞之乡、笙歌苗舞之乡、板凳龙舞之乡。
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 m_xs_bottom_30">
+                            <h3 class="color_light_2 m_bottom_20">购物指南</h3>
+                            <ul class="vertical_list">
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">账户自助服务<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">新账户注册<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">配送说明<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">怎么样下订单<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">支付方式<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">帮助中心<i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 m_xs_bottom_30">
+                            <h3 class="color_light_2 m_bottom_20">常见问题</h3>
+                            <ul class="vertical_list">
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">退换货流程<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">服务保证承诺<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">账号密码问题<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">交易条款<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">关于商家加盟<i class="fa fa-angle-right"></i></a></li>
+                                <li><a class="color_light tr_delay_hover" href="../../Front/Aboutus">关于开发商<i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <h3 class="color_light_2 m_bottom_20">意见收集</h3>
+                            <p class="f_size_medium m_bottom_15">本平台属于第一代系列，我们希望您们能慷慨提出您们的意见，帮助本平台的改进，我们虽然不是最好，但是我们力争做最好</p>
+                            @*<form id="newsletter">
+                                <input  placeholder="您的意见" class="m_bottom_20 r_corners  full_width" id="themassage"/>
+                                <button  class="button_type_8 r_corners bg_scheme_color " onclick="tothemassage">提交</button>
+                            </form>*@
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <h3 class="color_light_2 m_bottom_20">开发商</h3>
+                            <p class="f_size_medium m_bottom_15">钟意（2016级重庆理工大学计算机学院） <br />学 号：11203070139 <br />地 址：重庆市巴南区红光大道69号 <br />应 用：2016年6月毕业设计 </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--copyright part-->
+            <div class="footer_bottom_part">
+                <div class="container clearfix t_mxs_align_c">
+                    <div class="jianyi"> </div>
+                    <p class="f_left f_mxs_none m_mxs_bottom_10"><span class="color_light"><a>重庆理工大学花溪校区</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;计算机科学与工程——钟意&nbsp;&nbsp;&copy; Copyright 2016 CQUT</p>
+                    @*<ul class="f_right horizontal_list clearfix f_mxs_none d_mxs_inline_b">
+                        <li><img src="../../PIC/index_m/payment_img_1.png" alt=""></li>
+                        <li class="m_left_5"><img src="../../PIC/index_m/payment_img_2.png" alt=""></li>
+                        <li class="m_left_5"><img src="../../PIC/index_m/payment_img_3.png" alt=""></li>
+                        <li class="m_left_5"><img src="../../PIC/index_m/payment_img_4.png" alt=""></li>
+                        <li class="m_left_5"><img src="../../PIC/index_m/payment_img_5.png" alt=""></li>
+                    </ul>*@
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!--右边小框-->
+    <ul class="social_widgets d_xs_none">
+        <!--facebook-->
+        <li class="relative">
+            <button class="sw_button t_align_c facebook"><i class="fa fa-phone"></i></button>
+            <div class="sw_content">
+                <h3 class="color_dark m_bottom_20">热线电话: <br />(023) 1234-4567</h3>
+
+            </div>
+        </li>
+        <!--twitter feed-->
+        <li class="relative">
+            <button class="sw_button t_align_c twitter"><i class="fa fa-envelope-o"></i></button>
+            <div class="sw_content">
+                <h3 class="color_dark m_bottom_20">您的意见</h3>
+                <form id="contactform" class="mini">
+                    <textarea class="f_size_medium r_corners full_width m_bottom_20" placeholder="请输入……" id="cf_message"></textarea>
+                    <a role="button" class="button_type_4 d_inline_b r_corners tr_all_hover color_light tw_color" onclick="tomassage()">点击发送</a>
+                </form>
+            </div>
+        </li>
+        <!--contact form-->
+        <li class="relative">
+            <button class="sw_button t_align_c contact"><i class="fa fa-map-marker"></i></button>
+            <div class="sw_content">
+                <h3 class="color_dark m_bottom_20">所在地址</h3>
+                <ul class="c_info_list">
+                    <li class="m_bottom_10">
+                        <div class="clearfix m_bottom_15">
+                            <i class="fa fa-map-marker f_left color_dark"></i>
+                            <p class="contact_e">重庆市巴南区,<br> 红光大道69号</p>
+                        </div>
+
+                    </li>
+                    <li class="m_bottom_10">
+                        <div class="clearfix m_bottom_10">
+                            <i class="fa fa-phone f_left color_dark"></i>
+                            <p class="contact_e">800-559-65-80</p>
+                        </div>
+                    </li>
+                    <li class="m_bottom_10">
+                        <div class="clearfix m_bottom_10">
+                            <i class="fa fa-envelope f_left color_dark"></i>
+                            <a class="contact_e default_t_color" href="mailto:#">123456789@qq.com</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="clearfix">
+                            <i class="fa fa-clock-o f_left color_dark"></i>
+                            <p class="contact_e">发货时间:<br />星期一 - 星期五: 08：00-20：00 <br>星期六 - 星期日: 09：00-15：00</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+        <!--contact info-->
+        <li class="relative">
+            <button class="sw_button t_align_c googlemap"><i class="fa fa-question-circle"></i></button>
+            <div class="sw_content">
+                <h3 class="color_dark m_bottom_20"><a href="../../Front/Aboutus">帮助中心</a></h3>
+
+            </div>
+        </li>
+    </ul>
+    <!--custom popup-->
+
+    <button class="t_align_c r_corners tr_all_hover animate_ftl" id="go_to_top"><i class="fa fa-angle-up"></i></button>
+    <!--scripts include-->
+    <script src="../../Scripts/index/jquery-2.1.0.min.js"></script>
+    <script src="../../Scripts/index/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../../Scripts/index/retina.js"></script>
+    <script src="../../Scripts/index/camera.min.js"></script>
+    <script src="../../Scripts/index/jquery.easing.1.3.js"></script>
+    <script src="../../Scripts/index/waypoints.min.js"></script>
+    <script src="../../Scripts/index/jquery.isotope.min.js"></script>
+    <script src="../../Scripts/index/owl.carousel.min.js"></script>
+    <script src="../../Scripts/index/jquery.tweet.min.js"></script>
+    <script src="../../Scripts/index/jquery.custom-scrollbar.js"></script>
+    <script src="../../Scripts/index/scripts.js"></script>
+    <script type="text/javascript">
+    $("#numbercolle").html(localStorage.num );
+    $("#numbercart").html(localStorage.number );
+    $("#catprice").html(localStorage.catp);
+    </script>
+</body>
+</html>

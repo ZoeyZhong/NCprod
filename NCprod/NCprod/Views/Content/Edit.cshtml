@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.Title = "商品管理--商品编辑";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnReturn").click(function () {
+            window.location.href = "/Content/Product/";
+        });
+
+
+
+        $("#btnSave").click(function () {
+            if ($("#com_name").val() == "") {
+                alert("请填写商品名称");
+                return;
+            }
+            if ($("#com_price").val() == "") {
+                alert("请填写商品价格");
+                return;
+            }
+            if ($("#com_number").val() == "") {
+                alert("请填写商品数量");
+                return;
+            }
+            if ($("#com_postage").val() == "") {
+                alert("请填写商品邮费");
+                return;
+            }
+            if ($("#option1").find("option:selected").text() == "请选择") {
+                alert("请选择类别");
+                return;
+            }
+            if ($("#com_comment").val() == "") {
+                alert("请填写商品简介");
+                return;
+            }
+            if (!confirm("您确认要保存吗？")) {
+                return;
+            }
+            var article = GetArticle();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;utf-8",
+                url: "/Content/SaveEdit",
+                data: "{json:'" + $.toJSON(article) + "'}",
+                dataType: "",
+                success: function (data, textStatus) {
+                    if (data == "success") {
+                        alert("修改成功！");
+                        window.location.href = "/Content/Product";
+                    }
+                    else {
+                        alert(data);
+                    }
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    //HideLoading();
+                },
+                error: function (statusText, responseText) {
+                    //请求出错处理
+                    alert(statusText.responseText);
+                }
+            });
+        });
+    });
+
+    // 获取所有信息
+    function GetArticle() {
+        var article = new Object();
+        article.com_ID = $("#com_ID").val();
+        article.com_name = $("#com_name").val();
+        article.com_price = $("#com_price").val();
+        article.com_number = $("#com_number").val();
+        article.com_postage = $("#com_postage").val();
+        article.option1 = $("#option1").find("option:selected").val();
+        article.com_content = $("#com_content").val();
+        article.com_comment = $("#com_comment").val();
+        return article;
+    }
+</script>
+<div id="Detail">
+    <div style="width: 600px; margin-left: 30px;" id="form-paper">
+        <div style="text-align: left">
+            <a href="#" id="btnReturn" class="easyui-linkbutton" iconcls="icon-back" plain="true">
+                返回
+            </a><span style="color: #E7E7E7">&nbsp;|&nbsp;</span><a href="#" id="btnSave" class="easyui-linkbutton"
+                                                                    iconcls="icon-save" plain="true">保存</a>
+            <br />
+            <br />
+        </div>
+        <input id="com_ID" type="text" value="@ViewData["com_ID"]" style=" display:none;" />
+        <table>
+            <tr>
+                <th>
+                    商品名称：
+                </th>
+                <td>
+                    <input id="com_name" type="text" value="@ViewData["com_name"]" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品价格：
+                </th>
+                <td>
+                    <input id="com_price" type="text" value="@ViewData["com_price"]" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品数量：
+                </th>
+                <td>
+                    <input id="com_number" type="text" value="@ViewData["com_number"]" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    邮费：
+                </th>
+                <td>
+                    <input id="com_postage" type="text" value="@ViewData["com_postage"]" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品类别：
+                </th>
+                <td>
+                    @Html.DropDownList("list1", ViewData["product"] as SelectList, "请选择", new { id = "option1" })<span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品图片：
+                </th>
+                <td>
+                    <input id="com_content" type="text" value="@ViewData["com_content"]" /><span style="color: Red;"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品简介：
+                </th>
+                <td>
+                    <input id="com_comment" type="text" value="@ViewData["comment"]" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

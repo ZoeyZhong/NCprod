@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "交易管理--录入订单号";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnReturn").click(function () {
+            window.location.href = "/Content/Trading/";
+        });
+
+
+
+        $("#btnSave").click(function () {
+            if ($("#option3").val() == "") {
+                alert("请填写物流号！");
+                return;
+            }
+            if ($("#option4").val() == "") {
+                alert("请填写物流公司");
+                return;
+            }
+            var article = GetArticle();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;utf-8",
+                url: "/Content/SaveLogistics",
+                data: "{json:'" + $.toJSON(article) + "'}",
+                dataType: "",
+                success: function (data, textStatus) {
+                    if (data == "success") {
+                        alert("输入成功！");
+                        window.location.href = "/Content/Trading";
+                    }
+                    else {
+                        alert(data);
+                    }
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    //HideLoading();
+                },
+                error: function (statusText, responseText) {
+                    //请求出错处理
+                    alert(statusText.responseText);
+                }
+            });
+        });
+    });
+
+    // 获取所有信息
+    function GetArticle() {
+        var article = new Object();
+        article.option3 = $("#option3").val();//快递单号
+        article.option4 = $("#option4").val();//什么快递
+        article.orderid = $("#orderid").val();//订单ID
+        return article;
+    }
+</script>
+<div id="Detail">
+    <div style="width: 600px; margin-left: 30px;" id="form-paper">
+        <div style="text-align: left">
+            <a href="#" id="btnReturn" class="easyui-linkbutton" iconcls="icon-back" plain="true">
+                返回
+            </a><span style="color: #E7E7E7">&nbsp;|&nbsp;</span><a href="#" id="btnSave" class="easyui-linkbutton"
+                                                                    iconcls="icon-save" plain="true">保存</a>
+            <br />
+            <br />
+        </div>
+        <input id="orderid" type="text" value="@ViewData["orderid"]" style=" display:none;" />
+        <table>
+            <tr>
+                <th>
+                    物流号：
+                </th>
+                <td>
+                    <input id="option3" type="text" value="" maxlength="13" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    物流公司：
+                </th>
+                <td>
+                    <input id="option4" type="text" value="" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

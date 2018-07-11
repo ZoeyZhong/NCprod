@@ -1,0 +1,332 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>重庆南川土特产在线交易平台</title>
+    <link rel="icon" type="image/ico" href="../../PIC/index_m/fav.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="../../Scripts/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/login.js"></script>
+    <link href="../../CSS/login2.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/jquery.json-2.3.min.js"></script>
+    <!--   登录 -->
+    <script type="text/javascript">
+        var b = true;
+        $(function () {
+            GetArticle()
+            b = true;
+            fous(b);
+
+            $('body').addClass('has-js');
+            $('.label_check,.label_radio').click(function () {
+                setupLabel();
+            });
+            setupLabel();
+            //登录按钮
+            $("#btnLogOn").click(function () {
+                $.ajax({
+                    type: "post",
+                    contentType: "application/json;utf-8",
+                    dataType: "text",
+                    url: "/Home/LogOn",
+                    data: "{ userid : \"" + $("#txtusername").val() + "\"," +
+                                        " pwd:\"" + $("#txtpwd").val() + "\"}",
+                    success: function (result) {
+                        if (result == "success") {
+                            window.location.href = "/Front/Index";
+                        }
+                        else { alert("登录失败:" + result); }
+                    },
+                    error: function (statusText, responseText)   //  参数： statusText, responseText
+                    {
+                        alert("服务器连接有误！" + responseText);
+                    }
+                });
+
+
+            });
+            //注册按钮
+            $('#btnSave').click(function () {
+
+                if ($('#user').val() == "") {
+                    $('#user').focus().css({
+                        border: "1px solid red",
+                        boxShadow: "0 0 2px red"
+                    });
+                    alert("用户名不能为空!");
+                    return;
+                }
+                if ($('#user').val().length < 2 || $('#user').val().length > 6) {
+
+                    $('#user').focus().css({
+                        border: "1px solid red",
+                        boxShadow: "0 0 2px red"
+                    });
+                    alert("用户名位4-16字符");
+                    return;
+
+                }
+                if ($('#passwd').val().length < pwdmin) {
+                    $('#passwd').focus();
+                    alert("密码不能小于" + pwdmin + "位");
+                    return;
+                }
+                if ($('#passwd2').val() != $('#passwd').val()) {
+                    $('#passwd2').focus();
+                    alert("两次密码不一致！");
+                    return;
+                }
+                var phone1 = $('#phone').val();
+                var partten = /^1[3,5,8]\d{9}$/;
+                if ($('#phone').val() == "" || $('#phone').val().length != 11) {
+                    $('#phone').focus().css({
+                        border: "1px solid red",
+                        boxShadow: "0 0 2px red"
+                    });
+                    alert("手机号码输入格式不正确");
+                    return;
+                }
+                else if (!(partten.test(phone1)))
+                {
+                    alert("手机号码输入正确格式手机号码");
+                    return;
+                }
+                var article = GetArticle();
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;utf-8",
+                    url: "/Home/Save",
+                    data: "{json:'" + $.toJSON(article) + "'}",
+                    dataType: "",
+                    success: function (data, textStatus) {
+                        if (data === "existed") {
+                            alert("该用户已注册！");
+                            $('#user').val('');
+                            $('#phone').val('');
+                            $('#passwd').val('');
+                            $('#passwd2').val('');
+                        }
+                        else if (data == "success") {
+                            alert("注册成功！");
+                            $('#user').val('');
+                            $('#phone').val('');
+                            $('#passwd').val('');
+                            $('#passwd2').val('');
+                        }
+                        else {
+                            alert(data);
+                        }
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                        //HideLoading();
+                    },
+                    error: function (statusText, responseText) {
+                        //请求出错处理
+                        alert(statusText.responseText);
+                    }
+                });
+            });
+        });
+        function setupLabel() {
+            if ($('.label_check input').length) {
+                $('.label_check').each(function () {
+                    $(this).removeClass('c_on');
+                });
+                $('.label_check input:checked').each(function () {
+                    $(this).parent('label').addClass('c_on');
+                });
+            };
+            if ($('.label_radio input').length) {
+                $('.label_radio').each(function () {
+                    $(this).removeClass('r_on');
+                });
+                $('.label_radio input:checked').each(function () {
+                    $(this).parent('label').addClass('r_on');
+                });
+            };
+        }
+        function KeyDown() {
+            if (event.keyCode == 13) {
+                $('#btnLogOn').click();
+            }
+            if (event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                b = true ? false : true;
+                fous(b);
+            }
+        }
+        function fous(b) {
+            if (b) {
+                $('#txtusername').focus();
+            }
+            else {
+                $('#txtpwd').focus();
+            }
+        }
+        function GetArticle() {
+
+            //获取radio的值
+            var rds = document.getElementsByName("iCheck");
+            var rdVal;
+            for (var i = 0; i < rds.length; i++) {
+                if (rds.item(i).checked) {
+                    rdVal = rds.item(i).getAttribute("value");
+                    break;
+                }
+                else {
+                    continue;
+                }
+            }
+
+            var article = new Object();
+            //还有成员类型
+            article.roleid = rdVal;
+            article.user = $("#user").val();
+            article.phone = $("#phone").val();
+            article.passwd = $("#passwd").val();
+            return article;
+        }
+
+        //手机号码验证信息
+        function isMobil(s) {
+            //var patrn = /(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/;
+            //var patrn = /(1[3|4|5|8][0-9]\\d{6,8}$)/;
+            var patrn = /^1[3,5,8,9,7]\d{9}$/
+            if (!patrn.test(s)) {
+                return false;
+            }
+            return true;
+        }
+        //校验手机号
+        function checkPhone() {
+            var result = "fail";
+            var Mobile = $("#phone").val();
+            if (Mobile != "") {
+                if (isMobil(Mobile)) {
+                    result = "success";
+                }
+                else {
+                    alert("手机号码出错");
+                    result = "fail";
+                }
+            }
+            return result;
+        }
+    </script>
+    <!--结束登录-->
+</head>
+<body>
+    <h1>重庆南川土特产在线交易平台<sup>V1.0</sup></h1>
+
+    <div class="login" style="margin-top:50px;">
+
+        <div class="header">
+            <div class="switch" id="switch">
+                <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">快速登录</a>
+                <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">快速注册</a><div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+            </div>
+        </div>
+
+
+        <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
+
+            <!--登录-->
+            <div class="web_login" id="web_login">
+
+
+                <div class="login-box">
+
+
+                    <div class="login_form">
+                        <form action="http://www.js-css.cn" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
+                            <input type="hidden" name="did" value="0" />
+                            <input type="hidden" name="to" value="log" />
+                            <div class="uinArea" id="uinArea">
+                                <label class="input-tips" for="u">帐号：</label>
+                                <div class="inputOuter" id="uArea">
+
+                                    <input value="18324147809" type="text" id="txtusername" name="username" class="inputstyle" onkeydown="KeyDown()" />
+                                </div>
+                            </div>
+                            <div class="pwdArea" id="pwdArea">
+                                <label class="input-tips" for="p">密码：</label>
+                                <div class="inputOuter" id="pArea">
+
+                                    <input value="123456" type="password" id="txtpwd" name="p" class="inputstyle" onkeydown="KeyDown()" />
+                                </div>
+                            </div>
+                            <div style="padding-left:50px;margin-top:20px;"><input id="btnLogOn" value="登 录" style="width:150px;" class="button_blue" /></div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--登录end-->
+        </div>
+
+        <!--注册-->
+        <div class="qlogin" id="qlogin" style="display: none; ">
+
+            <div class="web_login">
+                <form name="form2" id="regUser" accept-charset="utf-8" action="http://www.js-css.cn" method="post">
+                    <input type="hidden" name="to" value="reg" />
+                    <input type="hidden" name="did" value="0" />
+                    <ul class="reg_form" id="reg-ul">
+                        <div id="userCue" class="cue">
+                            您的角色：
+                            <input value="3" type="radio" name="iCheck" checked/>买家
+                            <input value="2" type="radio" name="iCheck" />商家
+                            @*<input value="1" type="radio" name="iCheck" />管理员*@
+                        </div>
+                        <li>
+
+                            <label for="user" class="input-tips2">用户名：</label>
+                            <div class="inputOuter2">
+                                <input placeholder="2-6位字符" type="text" id="user" name="user" maxlength="6" class="inputstyle2" />
+                            </div>
+
+                        </li>
+                        <li>
+                            <label for="phone" class="input-tips2">电话：</label>
+                            <div class="inputOuter2">
+
+                                <input placeholder="请输入11位电话号码" type="text" id="phone" name="phone" maxlength="11" class="inputstyle2" />
+                            </div>
+
+                        </li>
+
+                        <li>
+                            <label for="passwd" class="input-tips2">密码：</label>
+                            <div class="inputOuter2">
+                                <input placeholder="不能小于6位" type="password" id="passwd" name="passwd" maxlength="16" class="inputstyle2" />
+                            </div>
+
+                        </li>
+                        <li>
+                            <label for="passwd2" class="input-tips2">确认密码：</label>
+                            <div class="inputOuter2">
+                                <input placeholder="两次密码要一致" type="password" id="passwd2" name="" maxlength="16" class="inputstyle2" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="inputArea">
+                                <input type="button" id="btnSave" style="margin-top:10px;margin-left:85px;" class="button_blue" value="同意协议并注册" /> <a href="#" class="zcxy" target="_blank">注册协议</a>
+                            </div>
+
+                        </li>
+                        <div class="cl"></div>
+                    </ul>
+                </form>
+
+
+            </div>
+
+
+        </div>
+        <!--注册end-->
+    </div>
+    <div class="jianyi">重庆理工大学花溪校区 &nbsp;&nbsp;|&nbsp;&nbsp;计算机科学与工程——钟意&#169; Copyright 2016 CQUT</div>
+</body>
+</html>

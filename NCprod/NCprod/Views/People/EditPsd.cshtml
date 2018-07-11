@@ -1,0 +1,136 @@
+﻿@model NCprod.Models.UserRole
+@{
+    ViewBag.Title = "个人资料--密码修改";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .H1 {
+        background-color: #E0EEE0;
+        font-weight: inherit;
+    }
+    /* .H2 { background-color: #99CCFF; color:White; }  */
+    .status {
+        color: Red;
+        text-align: left;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $('#btnback').click(function () {
+            history.go(-1);
+        });
+        $('#btnSave').click(function () {
+            $('#message').css("display", "none");
+
+            var formData = $('#form_user').serialize();
+            var newPassword = $('#userpwd1').val();
+            if ($('#userpwd').val() == "" || $('#userpwd1').val() == "") {
+                alert("密码不能为空！");
+                return;
+            }
+            if ($('#userpwd').val() == $('#userpwd1').val()) {
+                alert("新密码和原密码一致");
+                return;
+            }
+            if ($('#userpwd1').val() != $('#userpwd2').val()) {
+                alert("密码不一致");
+                return;
+            }
+            var reg = /^(\w){6,20}$/;
+            if (!reg.test($('#userpwd1').val())) {
+                alert("新密码格式不正确！");
+                return;
+            }
+
+            $.post("/People/SaveNewPassword/?newPassword=" + newPassword +
+                                                  "&old=" + $('#userpwd').val() +
+                                                  "&userid=" + $('#userid').val(), formData, function (result) {
+                                                      if (result.IsSucceed) {
+
+                                                          $('#msg').html('保存成功！');
+                                                          $('#message').css("display", "block");
+                                                          $('#userpwd').val('');
+                                                          $('#userpwd1').val('');
+                                                          $('#userpwd2').val('');
+                                                          setInterval(displaymessage, 3000);
+                                                      }
+                                                      else {
+                                                          $('#msg').html('保存失败！' + result.Message);
+                                                          $('#message').css("display", "block");
+                                                      }
+
+                                                  });
+        });
+
+    });
+    function displaymessage() {
+        $('#message').css("display", "none");
+    }
+
+</script>
+<div style="margin-bottom: 5px; padding: 5px; border: 1px solid #ddd">
+    <a href="#" id="btnback" class="easyui-linkbutton" iconcls="icon-back" plain="true">
+        返回
+    </a><span style="color: #E7E7E7">&nbsp;|&nbsp;</span><a href="#" id="btnSave" class="easyui-linkbutton"
+                                                            iconcls="icon-save" plain="true">保存</a>
+</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="msgtable">
+    <tr>
+        <th align="right" class="H2">
+            姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：
+        </th>
+        <td width="20%" colspan="2">
+            @Html.TextBoxFor(model => model.username, new { @style = "width:250px; height:20px;", @Value = @ViewData["username"], @disabled = true })
+        </td>
+    </tr>
+    <tr>
+        <th align="right" class="H2">
+            电话号码：
+    </th>
+    <td width="20%" colspan="2">
+        @Html.TextBoxFor(model => model.userid, new { @style = "width:250px; height:20px;", @Value = @ViewData["userid"], @disabled = true })
+    </td>
+</tr>
+<tr>
+    <th align="right" class="H1">
+        原密码：
+    </th>
+    <td width="20%">
+        @Html.PasswordFor(model => model.userpwd, new { @style = "width:250px; height:20px;" })
+    </td>
+    <td class="status" width="40%">
+        *
+    </td>
+</tr>
+<tr>
+    <th align="right" class="H2">
+        新密码：
+    </th>
+    <td width="20%">
+        <input type="password" id="userpwd1" style="width: 250px; height: 20px;" />
+    </td>
+    <td class="status" width="40%">
+        请输入6-20个字母、数字或下划线
+    </td>
+</tr>
+<tr>
+    <th align="right" class="H1">
+        确认新密码：
+    </th>
+    <td width="20%">
+        <input type="password" id="userpwd2" style="width: 250px; height: 20px;" />
+    </td>
+    <td class="status" width="40%">
+        *
+    </td>
+</tr>
+</table>
+<div style="height: 80px;">
+    <div id="message" class="alert alert-info" style="display: none; margin-right: 50px;
+        float: right; width: 30%">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h4 id="msg">
+            保存成功！
+        </h4>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea5ba47a59734a8d8f044ac7cb50a23d" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="NCtecanModel.dl_basic_users" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NCtecanModel.sys_function" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NCtecanModel.sys_role" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NCtecanModel.sys_role_function" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NCtecanModel.sys_user_role" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NCtecanModel.t_f_adress" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="NCtecanModel.t_f_area" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NCtecanModel.t_f_cart" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NCtecanModel.t_f_collect" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="NCtecanModel.t_f_commodity" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="NCtecanModel.t_f_order" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="NCtecanModel.t_f_shops" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NCtecanModel.t_x_logistics" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NCtecanModel.t_x_logistics_state" Width="1.5" PointX="10.75" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

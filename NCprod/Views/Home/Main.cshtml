@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Main";
+}
+
+<link href="../../CSS/main/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../CSS/main/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="../../CSS/main/flexslider.css" type="text/css" media="screen" />
+<script src="../../Scripts/jquery-1.11.1.min.js"></script>
+
+<div class="banner">
+    <div class="container">
+
+        <section class="slider">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <div class="slider-info">
+                            <h2>欢迎~</h2>
+                            <p>欢迎加入我们
+                            <br />我们平台提倡服务优质、质量上乘原则，给每一位客户带来不一样的消费感受……</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider-info">
+                            <h2>重庆南川</h2>
+                            <p>北有峨眉、南有金佛，东朝普陀、西拜金佛<br />世界生物基因库、中华药库、植物麦加</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="slider-info">
+                            <h2>南川特产</h2>
+                            <p>南川拥有优美的自然风光，同时拥有丰富的物质资产，纯天然新鲜是它的特色……</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- FlexSlider -->
+        <script defer src="../../Scripts/jquery.flexslider.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                SyntaxHighlighter.all();
+            });
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    start: function (slider) {
+                        $('body').removeClass('loading');
+                    }
+                });
+            });
+        </script>
+        <!-- FlexSlider -->
+    </div>
+</div>

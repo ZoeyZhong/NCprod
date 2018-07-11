@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "系统配置 → 系统功能";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="@Url.Content("~/ztree/zTreeStyle.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/ztree/jquery.ztree.core-3.3.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    var Right = {
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            onClick: onClick
+        }
+    };
+
+    function onClick(event, treeId, treeNode, clickFlag) {
+        try {
+            $.getJSON("/Right/GetFunction?t=" + new Date().getTime(), { fid: treeNode.id }, function (data) {
+                if (treeNode.pId == null)
+                    $("#moudle").val("0");
+                else
+                    $("#moudle").val(treeNode.pId);
+                $("#title").val(treeNode.name);
+                $("#title").attr("name", treeNode.id);
+
+                $("#function").val(data.funname);
+                $("#control").val(data.control);
+                $("#functionname").val(data.functionname);
+                $("#parameters").val(data.parameters);
+                $("#comment").val(data.comment);
+                $("#frmCondition").fadeIn("slow");
+            });
+        }
+        catch (e)
+        { alert(e.Message); }
+
+
+        //alert("[ " + getTime() + " onClick ]&nbsp;&nbsp;clickFlag = " + clickFlag + " (" + (clickFlag === 1 ? "普通选中" : (clickFlag === 0 ? "<b>取消选中</b>" : "<b>追加选中</b>")) + ")");
+    }
+
+    function loadtree() {
+        $.getJSON("/Right/GetFunctionTree?t=" + new Date().getTime(), function (data) {
+            $.fn.zTree.init($("#tree"), Right, data);
+        });
+    }
+
+    function reset() {
+        $("#moudle").val("0");
+        $("#title").val("");
+        $("#title").attr("name", "0");
+        $("#function").val("");
+        $("#control").val("");
+        $("#functionname").val("");
+        $("#parameters").val("");
+        $("#comment").val("");
+        $("#frmCondition").fadeOut();
+    }
+
+    $(function () {
+        //$("#frmCondition").hide();
+        reset();
+        loadtree();
+        /*#region 点击事件*/
+        $("#btnAdd").click(function () {
+            reset();
+            $("#frmCondition").fadeIn("slow");
+        });
+
+        $("#btnSave").click(function () {
+            var fun = new Object();
+            fun.pid = $("#moudle").val();
+            fun.name = $("#title").val();
+            fun.id = $("#title").attr("name");
+            fun.funname = $("#function").val();
+            fun.control = $("#control").val();
+            fun.functionname = $("#functionname").val();
+            fun.parameters = $("#parameters").val();
+            fun.comment = $("#comment").val();
+
+            if ($("#moudle").val() == "0") {
+                if (!confirm("您没有选择父功能模块，确认吗？")) {
+                    return;
+                }
+            }
+            var msg = "确定要保存？";
+            if (fun.id != 0) msg = "确定保存修改？";
+
+            if (confirm(msg)) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;utf-8",
+                    url: "/Right/SaveFunction",
+                    data: "{json:'" + $.toJSON(fun) + "'}",
+                    dataType: "",
+                    success: function (data, textStatus) {
+                        if (textStatus == "success") {
+                            $.fn.zTree.init($("#tree"), Right, eval(data));
+                            reset();
+                            alert("保存成功！");
+                        }
+                        else
+                            alert("保存失败！");
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                        //HideLoading();
+                    },
+                    error: function (statusText, responseText) {
+                        //请求出错处理
+                        alert(statusText.responseText);
+                    }
+                });
+            }
+        });
+        $("#btnDel").click(function () {
+            if ($("#title").attr("name") == "0")
+            { alert("请选择要删除的功能！"); return; }
+            if ($("#moudle").val() == "0")
+            { alert("功能模块不能删除！"); return; }
+            if (confirm("确定要删除功能：" + $("#title").val() + "?")) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;utf-8",
+                    url: "/Right/DeleteByID",
+                    data: "{fid:'" + $("#title").attr("name") + "'}",
+                    dataType: "",
+                    success: function (data, textStatus) {
+                        if (textStatus == "success") {
+                            $.fn.zTree.init($("#tree"), Right, eval(data));
+                            reset();
+                            alert("删除成功！");
+                        }
+                        else
+                            alert("删除失败！");
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                        //HideLoading();
+                    },
+                    error: function (statusText, responseText) {
+                        //请求出错处理
+                        alert(statusText.responseText);
+                    }
+                });
+            }
+        });
+
+        /*#endregion 点击事件*/
+    });
+</script>
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td height="30" colspan="2">
+            <div style="margin-bottom: 5px; background-color: #D7E4F2">
+                <a id="btnAdd" class="easyui-linkbutton" iconcls="icon-add" plain="true">新增</a>|<a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" plain="true">保存</a>|<a href="#" id="btnDel" class="easyui-linkbutton" iconcls="icon-cut" plain="true">删除</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">
+            <ul id="tree" class="ztree" style="width: 260px; overflow: auto;"></ul>
+        </td>
+        <td valign="top" style="width: 80%">
+            <fieldset>
+                <legend>功能定义</legend>
+                <table id="frmCondition" class="Cformtab">
+                    <tr>
+                        <th>
+                            模块名称
+                        </th>
+                        <td>
+                            <select id="moudle">
+                                <option value="0">一级目录&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                                @using (var db = new NCprod.Models.NCtecanEntities())
+                                {
+                                    foreach (NCprod.Models.sys_function f in db.sys_function.Where(w => w.pid == 0).ToList())
+                                    {
+                                        <option value="@f.fid">@f.function</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            标题
+                        </th>
+                        <td>
+                            <input id="title" type="text" name="0" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            菜单名称
+                        </th>
+                        <td>
+                            <input id="function" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            控制器
+                        </th>
+                        <td>
+                            <input id="control" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            方法名
+                        </th>
+                        <td>
+                            <input id="functionname" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            参数
+                        </th>
+                        <td>
+                            <input id="parameters" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            备注
+                        </th>
+                        <td>
+                            <textarea id="comment" name="comment" rows="*" cols="*" style="width: 90%; height: 50px;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "系统配置 → 角色定义";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RoleFunctions</title>
+    <script type="text/javascript">
+        $(function () {
+            /*角色的点击事件*/
+            $(".divRole").click(function () {
+                resetrole();
+                var imgsrcselected = "../../Content/images/selected.png";
+                $(this).find("img").attr("src", imgsrcselected);
+                $("#rolecontainer").attr("name", $(this).attr("id"));
+                $(this).css("color", "red");
+                /////
+                resetfunction();
+                $.getJSON("/Right/GetFunctionsByRole?t=" + new Date().getTime(), { rid: $(this).attr("id").substr(2) }, function (data) {
+                    $.each(data, function (i, item) {
+                        $("#" + item.fid).attr("checked", "checked");
+                    });
+                });
+            });
+            /*功能模块 复选框选择事件*/
+            $("input[name='moudle']").click(function () {
+                if ($(this).attr('checked') == "checked")
+                    $("[name='" + $(this).attr("id") + "']").attr("checked", "checked");
+                else
+                    $("[name='" + $(this).attr("id") + "']").removeAttr("checked");
+            });
+
+            /*恢复角色初始状态点击事件*/
+            $("#btnrefresh").click(function () {
+                if ($("#rolecontainer").attr("name").length < 2) {
+                    alert("请选择系统角色");
+                    return;
+                }
+                resetfunction();
+                $.getJSON("/Right/GetFunctionsByRole?t=" + new Date().getTime(), { rid: $("#rolecontainer").attr("name").substr(2) }, function (data) {
+                    $.each(data, function (i, item) {
+                        $("#" + item.fid).attr("checked", "checked");
+                    });
+                });
+            });
+
+            /*保存角色功能的点击事件*/
+            $("#btnSave").click(function () {
+                if ($("#rolecontainer").attr("name").length < 2) {
+                    alert("系统角色尚未选择，不能保存！");
+                    return;
+                }
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;utf-8",
+                    url: "/Right/SaveRoleFunction?t=" + new Date().getTime(),
+                    data: "{json:'" + $.toJSON(getjson()) + "'}",
+                    dataType: "",
+                    success: function (data, textStatus) {
+                        if (textStatus == "success") {
+                            alert("保存成功！");
+                        }
+                        else
+                            alert("保存失败！" + data);
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                        //HideLoading();
+                    },
+                    error: function (statusText, responseText) {
+                        //请求出错处理
+                        alert(statusText.responseText);
+                    }
+                });
+            });
+            //获取角色
+            function getjson() {
+                var json = new Object();
+                json.rid = $("#rolecontainer").attr("name").substr(2);
+                json.funs = new Array();
+                $(".function").each(function () {
+                    var obj = new Object();
+                    obj.fid = $(this).attr("id");
+                    obj.selected = $(this).attr("checked") == "checked";
+                    json.funs.push(obj);
+                });
+                //json = json != "{[" ? json.substring(0, json.length - 1) : json;    //去掉最后的一个 ",";
+                return json;
+            }
+        });
+
+        function resetrole() {
+            $(".divRole").each(function () {
+                $(this).css("color", "#365569");
+            });
+            $(".divRole img").each(function () {
+                var imgsrc = "../../Content/images/header.png";
+                $(this).attr("src", imgsrc);
+            });
+        }
+        function resetfunction() {
+            $(".functions input[type='checkbox']").removeAttr("checked");
+        }
+    </script>
+</head>
+<body>
+    <table width="98%" border="0" cellspacing="0" cellpadding="0" style="font: 12px;">
+        <tr>
+            <td height="30">
+                <div style="margin-bottom: 5px;">
+                    &nbsp;&nbsp;&nbsp; <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save"
+                                          plain="true">保存</a><span style="color: #E7E7E7">&nbsp;|&nbsp;</span> <a href="#"
+                                                                                                                  id="btnrefresh" class="easyui-linkbutton" iconcls="icon-reload" plain="true">恢复</a>
+                </div>
+            </td>
+        </tr>
+        
+        </table>
+    <table>
+        <tr >
+
+            @using (var db = new NCprod.Models.NCtecanEntities())
+{
+    var root = (from a in db.sys_role
+                where a.option1 == null
+                select new
+                {
+                    a.rid,
+                    a.rolename
+
+                }).Distinct().OrderBy(ob => ob.rid);
+    foreach (var m in root)
+    {
+        <td style="width:100px" class="divRole" id="r_@(m.rid)">
+            <img style="width:50px;height:50px" alt="@m.rolename" src="../../Content/images/header.png" /><br />@m.rolename
+        </td>
+    }
+}
+        </tr>
+
+    </table>
+    <table>
+        
+        <tr>
+            <td style="height: 10px; background-color: #FD6A15">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    @using (var db = new NCprod.Models.NCtecanEntities())
+                    {
+                        foreach (var moudle in db.sys_function.Where(c => c.pid == 0))
+                        {
+                            <fieldset class="functions">
+                                <legend>
+                                    <input type="checkbox" style="float:left;" class="function" id="@moudle.fid" name="moudle" /><label style="float:left;" for="@moudle.fid">@moudle.title</label>
+                                </legend>
+                                @foreach (var fun in db.sys_function.Where(c => c.pid == moudle.fid))
+                                {
+                                    <input type="checkbox" style="float:left;" class="function" id="@fun.fid" name="@fun.pid" /><label style="float:left;" for="@fun.fid">
+                                        @fun.title
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                </label>
+
+                                }
+                            </fieldset>
+                        }
+                    }
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

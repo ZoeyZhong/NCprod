@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.Title = "商品管理--新增商品";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/ajaxfileupload.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnReturn").click(function () {
+            history.go(-1);
+        });
+
+        $("#btnSave").click(function () {
+            if ($("#com_name").val() == "") {
+                alert("请填写商品名称");
+                return;
+            }
+            if ($("#com_price").val() == "") {
+                alert("请填写商品价格");
+                return;
+            }
+            if ($("#option2").val() == "") {
+                alert("请填写商品重量");
+                return;
+            }
+            if ($("#com_number").val() == "") {
+                alert("请填写商品数量");
+                return;
+            }
+            if ($("#com_postage").val() == "") {
+                alert("请填写商品邮费");
+                return;
+            }
+            if ($("#option1").find("option:selected").text() == "请选择") {
+                alert("请选择类别");
+                return;
+            }
+            if ($("#com_comment").val() == "") {
+                alert("请填写商品简介");
+                return;
+            }
+            var article = GetArticle();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;utf-8",
+                url: "/Content/Save",
+                data: "{json:'" + $.toJSON(article) + "'}",
+                dataType: "",
+                success: function (data, textStatus) {
+                    if (data == "existed") {
+                        alert("保存失败，请重试！");
+                        $('#com_name').val('');
+                        $('#com_price').val('');
+                        $('#option2').val('');
+                        $('#com_number').val('');
+                        $('#com_postage').val('');
+                        $('#option1').val('');
+                        $('#com_content').val('');
+                        $('#com_comment').val('');
+                    }
+                    else if (data == "success") {
+                        alert("保存成功！");
+                        $('#com_name').val('');
+                        $('#com_price').val('');
+                        $('#option2').val('');
+                        $('#com_number').val('');
+                        $('#com_postage').val('');
+                        $('#option1').val('');
+                        $('#com_content').val('');
+                        $('#com_comment').val('');
+                    }
+                    else {
+                        alert(data);
+                    }
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    //HideLoading();
+                },
+                error: function (statusText, responseText) {
+                    //请求出错处理
+                    alert(statusText.responseText);
+                }
+            });
+        });
+    });
+
+    // 获取所有信息
+    function GetArticle() {
+        var article = new Object();
+
+        article.com_name = $("#com_name").val();
+        article.com_price = $("#com_price").val();
+        article.com_number = $("#com_number").val();
+        article.com_postage = $("#com_postage").val();
+        article.option1 = $("#option1").find("option:selected").val();
+        article.com_content = $("#com_content").val();
+        article.com_comment = $("#com_comment").val();
+        article.option2 = $("#option2").val();
+        return article;
+    }
+</script>
+<script type="text/javascript">
+    function Upload() {
+        $.ajaxFileUpload({
+            url: '/Content/Photo_Save',
+            secureuri: false,
+            fileElementId: 'pic_upload',
+            dataType: 'Json',
+            data: {},
+            success: function (data, status) {
+                var args = data.split("|");
+                if (args[0] == "1") {
+                    $("#com_content").val(args[1]);
+                    alert(agrs[2]);
+                } else {
+                    alert("上传失败!");
+                }
+            },
+            error: function (data, status, e) {
+                alert(e);
+            }
+        });
+    }
+</script>
+
+<br />
+<br />
+<div id="Detail">
+    <div style="width: 600px; margin-left: 30px;" id="form-paper">
+        <div style="text-align: left">
+            <a href="#" id="btnReturn" class="easyui-linkbutton" iconcls="icon-back" plain="true">
+                返回
+            </a><span style="color: #E7E7E7">&nbsp;|&nbsp;</span><a href="#" id="btnSave" class="easyui-linkbutton"
+                                                                    iconcls="icon-save" plain="true">保存</a>
+            <br />
+            <br />
+        </div>
+        <table>
+            <tr>
+                <th>
+                    商品名称：
+                </th>
+                <td>
+                    <input id="com_name" type="text" value="" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品价格：
+                </th>
+                <td>
+                    <input id="com_price" type="text" value="" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品重量：
+                </th>
+                <td>
+                    <input id="option2" type="text" value="" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品数量：
+                </th>
+                <td>
+                    <input id="com_number" type="text" value="" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    邮费：
+                </th>
+                <td>
+                    <input id="com_postage" type="text" value="" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品类别：
+                </th>
+                <td>
+                    @Html.DropDownList("list1", ViewData["product"] as SelectList, "请选择", new { id = "option1" })
+                    @*<input id="com_content" type="text" value="" />*@<span style="color: Red;">*</span>
+                </td>
+                </td>
+            </tr>
+            <tr style="display:none">
+                <th>
+                    商品图片：
+                </th>
+                <td>
+                    <input id="com_content" type="text" value="" /><span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品图片:
+                </th>
+                <td>
+                    <input id="pic_upload" type="file" name="pic_upload" />
+                    <input id="upload" type="button" value="上传图片..." onclick="Upload()" />
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    商品简介：
+                </th>
+                <td>
+                    <textarea id="com_comment"></textarea><span style="color: Red;">*</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

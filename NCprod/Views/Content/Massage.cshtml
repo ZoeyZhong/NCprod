@@ -1,0 +1,59 @@
+﻿@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "系统管理--意见收集";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+    });
+    function onRowSelected_delete(com_ID) {
+        if (confirm('确认阅读修改?')) {
+            $.post("/Content/ReadMassage/", "id=" + com_ID, function (result) {
+                if (result.Total > 0) {
+                    $('#message').css("display", "block");
+                    var griddata = $('#ALLPRODUCTS').data('tGrid');
+                    griddata.dataBind(result.Data);
+                    setInterval(displaymessage, 3000);
+                }
+                else {
+                    $('msg').html('修改失败！');
+                    $('#message').css("display", "block");
+                }
+
+            });
+        }
+    }
+    function displaymessage() {
+        $('#message').css("display", "none");
+    }
+
+</script>
+
+@(Html.Telerik().Grid<Massage>().Name("ALLPRODUCTS")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(o => o.com_ID).Title("编号").Width(100);
+                        columns.Bound(o => o.com_content).Title("意见内容").Width(100);
+                        columns.Bound(o => o.isdel).Title("是否阅读修改").Width(100);
+                        columns.Bound(o => o.com_ID).Title("已阅读修改")
+                            .ClientTemplate(
+                            "<a href=\"#\" onclick=\"onRowSelected_delete(<#= com_ID #>)\" title='已阅读修改'>" +
+                            "<img style=\"width:16px;height:16px;\" src='/PIC/back/read.png'></a>")
+                            .Width(80);
+                    })
+                            .DataBinding(dataBinding => dataBinding.Ajax().Select("MassageList", "Content"))
+                            .Selectable()
+                            .Pageable()
+                            .Footer(true)
+)
+<div style="height: 80px;">
+    <div id="message" class="alert alert-info" style="display: none; margin-right: 50px;
+        margin-top: 20px; float: right; width: 30%">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h4 id="msg">
+            成功阅读修改！
+        </h4>
+    </div>
+</div>

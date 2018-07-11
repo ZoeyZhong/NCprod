@@ -1,0 +1,2373 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Heard.cshtml";
+}
+@using NCprod.Models;
+<script type="text/javascript">
+    localStorage.num = '@ViewData["numbercolle"]';
+    localStorage.number = '@ViewData["numbercart"]';
+    localStorage.catp = '@ViewData["catprice"]';
+</script>
+<!--菜单栏-->
+<section class="menu_wrap relative">
+    <div class="container clearfix">
+        <!--button for responsive menu-->
+        <button id="menu_button" class="r_corners centered_db d_none tr_all_hover d_xs_block m_bottom_10">
+            <span class="centered_db r_corners"></span>
+            <span class="centered_db r_corners"></span>
+            <span class="centered_db r_corners"></span>
+        </button>
+        <!--main menu-->
+        <nav role="navigation" class="f_left f_xs_none d_xs_none">
+            <ul class="horizontal_list main_menu clearfix">
+                <li class="current  relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Index" class="tr_delay_hover color_light tt_uppercase"><b>特色推荐</b></a>
+                    <!--sub menu-->
+                    <div class="sub_menu_wrap top_arrow d_xs_none tr_all_hover clearfix r_corners w_xs_auto">
+                        <div class="f_left f_xs_none">
+                            <b class="color_dark m_left_20 m_bottom_5 m_top_5 d_inline_b">销量TOP</b>
+                            <ul class="sub_menu first">
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Tea"><i class="fa fa-coffee"></i>&nbsp;&nbsp;清新茶类</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Rice"><i class="fa fa-pagelines"></i>&nbsp;&nbsp;五谷杂粮</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Meat"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;营养肉类</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Jfood"><i class="fa fa-beer"></i>&nbsp;&nbsp;可口小吃</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Fruit"><i class="fa fa-lemon-o"></i>&nbsp;&nbsp;清新瓜果</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Gift"><i class="fa fa-gift"></i>&nbsp;&nbsp;精致物件</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Aboutus"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;关于我们</a></li>
+                            </ul>
+                        </div>
+                        <div class="f_left f_xs_none">
+                            <b class="color_dark m_left_20 m_bottom_5 m_top_5 d_inline_b">购物指南</b>
+                            <ul class="sub_menu first">
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">账户自助服务</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">新账户注册</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">配送说明</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">怎么样下订单</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">支付方式</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">帮助中心</a></li>
+                            </ul>
+                        </div>
+                        <div class="f_left m_left_10 m_xs_left_0 f_xs_none">
+                            <b class="color_dark m_left_20 m_bottom_5 m_top_5 d_inline_b">友情链接</b>
+                            <ul class="sub_menu">
+                                <li><a class="color_dark tr_delay_hover" href="http://baike.baidu.com/link?url=1vX5bkJWaR959SOxZ4aDuSMtkdmejRof-UZxgWeqxpXDoJTSmdH27izaIcxWhrYhw6CuZxc24XWjQkfxizj_T_">关于重庆南川区</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="http://baike.baidu.com/link?url=Gyk8YUvNsGfopzUosACtfVB0GTSUYEwC1IRlrWcse1wIPaWQfgaPLhEfxOfEw_BhlogXxV1GQyOwgZIfRvFE8yF9lby7JDCD6sqCRTT5U8O">美丽的重庆</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="http://www.bytravel.cn/view/top10/index729.html">南川十大景点</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="http://www.cqnc.gov.cn/">重庆南川政府</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="http://trip.elong.com/nanchuan/">南川旅游攻略</a></li>
+                            </ul>
+                        </div>
+                        <img src="../../PIC/index_m/woman_image_1.jpg" class="d_sm_none f_right m_bottom_10" alt="">
+                    </div>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Tea" class="tr_delay_hover color_light tt_uppercase"><b>清新茶类</b></a>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Rice" class="tr_delay_hover color_light tt_uppercase"><b>五谷杂粮</b></a>
+
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Meat" class="tr_delay_hover color_light tt_uppercase"><b>营养肉类</b></a>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Jfood" class="tr_delay_hover color_light tt_uppercase"><b>可口小吃</b></a>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Fruit" class="tr_delay_hover color_light tt_uppercase"><b>新鲜瓜果</b></a>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Gift" class="tr_delay_hover color_light tt_uppercase"><b>精致物件</b></a>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5"><a href="../Front/Aboutus" class="tr_delay_hover color_light tt_uppercase"><b>关于南川</b></a></li>
+            </ul>
+        </nav>
+        <button class="f_right search_button tr_all_hover f_xs_none d_xs_none">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+    <!--search form-->
+    <div class="searchform_wrap tf_xs_none tr_all_hover">
+        <div class="container vc_child h_inherit relative">
+            <form role="search" class="d_inline_middle full_width">
+                <input type="text" name="search" placeholder="请输入搜索内容" class="f_size_large">
+            </form>
+            <button class="close_search_form tr_all_hover d_xs_none color_dark">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+    </div>
+</section>
+<!--幻灯片-->
+<div class="camera_wrap m_bottom_0">
+    <div data-src="../../PIC/index_m/slide_02.jpg" data-custom-thumb="../../PIC/index_m/slide_02.jpg">
+        <div class="camera_caption_1 fadeFromTop t_align_c d_xs_none">
+            <div class="f_size_large color_light tt_uppercase slider_title_3 m_bottom_5">中华田园之乡</div>
+            <hr class="slider_divider d_inline_b m_bottom_5">
+            <div class="color_light slider_title tt_uppercase t_align_c m_bottom_45 m_sm_bottom_20"><b> 重庆&amp;南川金佛山 <br>鲜肉</b></div>
+            @*<div class="color_light slider_title_2 m_bottom_45">￥<b>20.00/500g</b></div>*@
+            <a href="../../Front/Meat" role="button" class="tr_all_hover button_type_4 bg_scheme_color color_light r_corners tt_uppercase">马上购买</a>
+        </div>
+    </div>
+    <div data-src="../../PIC/index_m/slide_01.jpg" data-custom-thumb="../../PIC/index_m/slide_01.jpg">
+        <div class="camera_caption_2 fadeIn t_align_c d_xs_none">
+            <div class="f_size_large tt_uppercase slider_title_3 scheme_color">重庆南川</div>
+            <hr class="slider_divider type_2 m_bottom_5 d_inline_b">
+            <div class="color_light slider_title tt_uppercase t_align_c m_bottom_65 m_sm_bottom_20"><b><span class="scheme_color">南川贡米零利大促销</span><br><span class="color_dark">赶快抢购</span></b></div>
+            <a href="../../Front/Rice" role="button" class="d_sm_inline_b button_type_4 bg_scheme_color color_light r_corners tt_uppercase tr_all_hover">继续选购</a>
+        </div>
+    </div>
+    <div data-src="../../PIC/index_m/slide_03.jpg" data-custom-thumb="../../PIC/index_m/slide_03.jpg">
+        <div class="camera_caption_3 fadeFromTop t_align_c d_xs_none">
+            <img src="../../PIC/index_m/slider_layer_img.png" alt="" class="m_bottom_5">
+            <div class="color_light slider_title tt_uppercase t_align_c m_bottom_60 m_sm_bottom_20"><b class="color_dark">最低价↓↓</b></div>
+            <a href="../../Front/Jfood" role="button" class="d_sm_inline_b button_type_4 bg_scheme_color color_light r_corners tt_uppercase tr_all_hover">现在购买</a>
+        </div>
+    </div>
+</div>
+<!--热销商品展示-->
+<div class="page_content_offset">
+    <div class="container">
+        <h2 class="tt_uppercase m_bottom_20 color_dark heading1 animate_ftr">热销商品展示窗</h2>
+        <!--filter navigation of products-->
+        <ul class="horizontal_list clearfix tt_uppercase isotope_menu f_size_ex_large">
+            <li class="active m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter="*">全部</button></li>
+            <li class="m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter=".featured">热门TOP</button></li>
+            <li class="m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter=".new">新品</button></li>
+            <li class="m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter=".specials">大减价</button></li>
+            <li class="m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter=".hit">我要囤货</button></li>
+            <li class="m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter=".random">美食总动员</button></li>
+            <li class="m_right_5 m_bottom_10 m_xs_bottom_5 animate_ftr"><button class="button_type_2 bg_light_color_1 r_corners tr_delay_hover tt_uppercase box_s_none" data-filter=".rated">我的特色</button></li>
+        </ul>
+        <!--products-->
+        <section class="products_container clearfix m_bottom_25 m_sm_bottom_15">
+            @{
+                if (true)
+                {
+                    var db = new NCtecanEntities();
+                    var root = (from a in db.t_f_commodity
+                                join b in db.dl_basic_users on a.com_belong equals b.userid
+                                where a.com_state == 1 && a.isdel == false && a.com_ID==9
+                                select new
+                                {
+                                    a.com_ID,//商品ID
+                                    a.com_price,//商品价格
+                                    a.com_name,//商品名称
+                                    a.com_content, //商品图片
+                                    a.com_belong,//商家联系方式
+                                    a.com_number,//商品数量
+                                    a.com_postage,//商品邮费
+                                    a.comment,//商品简介
+                                    a.option2,//商品的重量
+                                    option3 = b.username,//商品商家名字
+
+                                }).Distinct().OrderBy(ob => ob.com_ID);
+                    foreach (var p in root)
+                    {
+                        <div class="product_item">
+                            <figure class="r_corners photoframe shadow relative hit animate_ftb long">
+                                <!--product preview-->
+                                <a href="#" class="d_block relative pp_wrap">
+                                    <!--hot product-->
+                                    <span class="hot_stripe"><img src="../../PIC/index_m/hot_product.png" alt=""></span>
+                                    <img src="@(p.com_content)" class="tr_all_hover" alt="">
+                                    <span role="button" data-popup="#@(p.com_ID)" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none">查看详情</span>
+                                </a>
+                                <!--description and price of product-->
+                                <figcaption>
+                                    <h5 class="m_bottom_10"><a href="#" class="color_dark">@(p.com_name)</a></h5>
+                                    <div class="clearfix">
+                                        <p class="scheme_color f_left f_size_large m_bottom_15">￥@(p.com_price)</p>
+                                        <!--评星点儿-->
+                                        <ul class="horizontal_list f_right clearfix rating_list tr_all_hover">
+                                            <li class="active">
+                                                <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                <i class="fa fa-star active tr_all_hover"></i>
+                                            </li>
+                                            <li class="active">
+                                                <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                <i class="fa fa-star active tr_all_hover"></i>
+                                            </li>
+                                            <li class="active">
+                                                <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                <i class="fa fa-star active tr_all_hover"></i>
+                                            </li>
+                                            <li class="active">
+                                                <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                <i class="fa fa-star active tr_all_hover"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                <i class="fa fa-star active tr_all_hover"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                                    <a href="../../Home/Index">
+                                        <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 m_left_5 p_hr_0"><i class="fa fa-files-o"></i></button>
+                                    </a> <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 p_hr_0" onclick="joincollect(@(p.com_ID))"><i class="fa fa-heart-o"></i></button>
+                                   
+                                </figcaption>
+                            </figure>
+            </div>
+                 <!--弹出框-->
+                        <div class="popup_wrap d_none" id="@(p.com_ID)">
+                            <section class="popup r_corners shadow">
+                                <button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+                                <div class="clearfix">
+                                    <div class="custom_scrollbar">
+                                        <!--left popup column-->
+                                        <div class="f_left half_column">
+                                            <div class="relative d_inline_b m_bottom_10 qv_preview">
+                                                <span class="hot_stripe"><img src="../../PIC/index_m/sale_product.png" alt=""></span>
+                                                <img style="width:360px;height:360px" src="../../@(p.com_content)" class="tr_all_hover" alt="">
+                                            </div>
+                                            <!--carousel-->
+                                            <div class="relative qv_carousel_wrap m_bottom_20">
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_prev">
+                                                    <i class="fa fa-angle-left "></i>
+                                                </button>
+                                                <ul class="qv_carousel d_inline_middle">
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                </ul>
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_next">
+                                                    <i class="fa fa-angle-right "></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--商品信息框-->
+                                        <div class="f_right half_column">
+                                            <!--description-->
+                                            <h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">@(p.com_name)</a></h2>
+                                            <div class="m_bottom_10">
+                                                <!--rating-->
+                                                <ul class="horizontal_list d_inline_middle type_2 clearfix rating_list tr_all_hover">
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="d_inline_middle default_t_color f_size_small m_left_5">评价 </a>
+                                            </div>
+                                            <hr class="m_bottom_10 divider_type_3">
+                                            <table class="description_table m_bottom_10">
+                                                <tr>
+                                                    <td>生产地点:</td>
+                                                    <td><a href="#" class="color_dark">重庆南川</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商家名称:</td>
+                                                    <td><span class="color_green">昵称</span> @(p.option3)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系方式:</td>
+                                                    <td>@(p.com_belong)</td>
+                                                </tr>
+                                            </table>
+                                            <table class="description_table m_bottom_5">
+                                                <tr>
+                                                    <td>产品数量:</td>
+                                                    <td><span class="color_dark">@(p.com_number)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品重量:</td>
+                                                    <td><span class="color_dark">@(p.option2)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品类别:</td>
+                                                    <td>清新茶类</td>
+                                                </tr>
+                                            </table>
+                                            <hr class="divider_type_3 m_bottom_10">
+                                            <p class="m_bottom_10">@(p.comment)</p>
+                                            <hr class="divider_type_3 m_bottom_15">
+                                            <div class="m_bottom_15">
+                                                <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">￥@(p.com_price)</span>
+                                            </div>
+                                            <!--目前没有实现获取数量值，统一设置为1件-->
+                                            <table class="description_table type_2 m_bottom_15">
+                                                <tr>
+                                                    <td class="v_align_m">数量:</td>
+                                                    <td class="v_align_m">
+                                                        <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+                                                            <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                            <input id="quantity" type="text" name="" value="1" class="f_left">
+                                                            <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="clearfix m_bottom_15">
+                                                <button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                                                <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i onclick="joincollect(@(p.com_ID))" class="fa fa-heart-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">收藏</span></button>
+                                                <a href="../../Home/Index">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-files-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">我的订单</span></button>
+                                                </a>
+                                                <a href="../../Front/Aboutus">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0 relative"><i class="fa fa-question-circle f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">帮助中心</span></button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        //JS加入购物车
+                        <script type="text/javascript">
+                            //收藏
+                            function joincollect(productId)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCollect/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("收藏失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("收藏成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                            //加入购物车
+                            function joincart(productId, number)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                article.coms_num = number;
+
+
+                                var x = JSON.stringify(article)
+
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCart/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("加入购物车失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("加入购物车成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                        </script>
+                    }
+                }
+
+            }
+            @{
+    if (true)
+    {
+        var db = new NCtecanEntities();
+        var root = (from a in db.t_f_commodity
+                    join b in db.dl_basic_users on a.com_belong equals b.userid
+                    where a.com_state == 1 && a.isdel == false && a.com_ID == 1
+                    select new
+                    {
+                        a.com_ID,//商品ID
+                        a.com_price,//商品价格
+                        a.com_name,//商品名称
+                        a.com_content, //商品图片
+                        a.com_belong,//商家联系方式
+                        a.com_number,//商品数量
+                        a.com_postage,//商品邮费
+                        a.comment,//商品简介
+                        a.option2,//商品的重量
+                        option3 = b.username,//商品商家名字
+
+                    }).Distinct().OrderBy(ob => ob.com_ID);
+        foreach (var p in root)
+        {
+            <div class="product_item featured">
+                <figure class="r_corners photoframe shadow relative hit animate_ftb long">
+                    <!--product preview-->
+                    <a href="#" class="d_block relative pp_wrap">
+                        <!--hot product-->
+                        <span class="hot_stripe"><img src="../../PIC/index_m/hot_product.png" alt=""></span>
+                        <img src="@(p.com_content)" class="tr_all_hover" alt="">
+                        <span role="button" data-popup="#@(p.com_ID)" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none">查看详情</span>
+                    </a>
+                    <!--description and price of product-->
+                    <figcaption>
+                        <h5 class="m_bottom_10"><a href="#" class="color_dark">@(p.com_name)</a></h5>
+                        <div class="clearfix">
+                            <p class="scheme_color f_left f_size_large m_bottom_15">￥@(p.com_price)</p>
+                            <!--评星点儿-->
+                            <ul class="horizontal_list f_right clearfix rating_list tr_all_hover">
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                        <a href="../../Home/Index">
+                            <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 m_left_5 p_hr_0"><i class="fa fa-files-o"></i></button>
+                        </a> <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 p_hr_0" onclick="joincollect(@(p.com_ID))"><i class="fa fa-heart-o"></i></button>
+</figcaption>
+                </figure>
+            </div>
+                 <!--弹出框-->
+                        <div class="popup_wrap d_none" id="@(p.com_ID)">
+                            <section class="popup r_corners shadow">
+                                <button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+                                <div class="clearfix">
+                                    <div class="custom_scrollbar">
+                                        <!--left popup column-->
+                                        <div class="f_left half_column">
+                                            <div class="relative d_inline_b m_bottom_10 qv_preview">
+                                                <span class="hot_stripe"><img src="../../PIC/index_m/sale_product.png" alt=""></span>
+                                                <img style="width:360px;height:360px" src="../../@(p.com_content)" class="tr_all_hover" alt="">
+                                            </div>
+                                            <!--carousel-->
+                                            <div class="relative qv_carousel_wrap m_bottom_20">
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_prev">
+                                                    <i class="fa fa-angle-left "></i>
+                                                </button>
+                                                <ul class="qv_carousel d_inline_middle">
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                </ul>
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_next">
+                                                    <i class="fa fa-angle-right "></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--商品信息框-->
+                                        <div class="f_right half_column">
+                                            <!--description-->
+                                            <h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">@(p.com_name)</a></h2>
+                                            <div class="m_bottom_10">
+                                                <!--rating-->
+                                                <ul class="horizontal_list d_inline_middle type_2 clearfix rating_list tr_all_hover">
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="d_inline_middle default_t_color f_size_small m_left_5">评价 </a>
+                                            </div>
+                                            <hr class="m_bottom_10 divider_type_3">
+                                            <table class="description_table m_bottom_10">
+                                                <tr>
+                                                    <td>生产地点:</td>
+                                                    <td><a href="#" class="color_dark">重庆南川</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商家名称:</td>
+                                                    <td><span class="color_green">昵称</span> @(p.option3)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系方式:</td>
+                                                    <td>@(p.com_belong)</td>
+                                                </tr>
+                                            </table>
+                                            <table class="description_table m_bottom_5">
+                                                <tr>
+                                                    <td>产品数量:</td>
+                                                    <td><span class="color_dark">@(p.com_number)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品重量:</td>
+                                                    <td><span class="color_dark">@(p.option2)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品类别:</td>
+                                                    <td>五谷杂粮</td>
+                                                </tr>
+                                            </table>
+                                            <hr class="divider_type_3 m_bottom_10">
+                                            <p class="m_bottom_10">@(p.comment)</p>
+                                            <hr class="divider_type_3 m_bottom_15">
+                                            <div class="m_bottom_15">
+                                                <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">￥@(p.com_price)</span>
+                                            </div>
+                                            <!--目前没有实现获取数量值，统一设置为1件-->
+                                            <table class="description_table type_2 m_bottom_15">
+                                                <tr>
+                                                    <td class="v_align_m">数量:</td>
+                                                    <td class="v_align_m">
+                                                        <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+                                                            <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                            <input id="quantity" type="text" name="" value="1" class="f_left">
+                                                            <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="clearfix m_bottom_15">
+                                                <button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                                                <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i onclick="joincollect(@(p.com_ID))" class="fa fa-heart-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">收藏</span></button>
+                                                <a href="../../Home/Index">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-files-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">我的订单</span></button>
+                                                </a>
+                                                <a href="../../Front/Aboutus">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0 relative"><i class="fa fa-question-circle f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">帮助中心</span></button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        //JS加入购物车
+                        <script type="text/javascript">
+                            //收藏
+                            function joincollect(productId)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCollect/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("收藏失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("收藏成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                            //加入购物车
+                            function joincart(productId, number)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                article.coms_num = number;
+
+
+                                var x = JSON.stringify(article)
+
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCart/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("加入购物车失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("加入购物车成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                        </script>
+                    }
+                }
+
+            }
+            @{
+    if (true)
+    {
+        var db = new NCtecanEntities();
+        var root = (from a in db.t_f_commodity
+                    join b in db.dl_basic_users on a.com_belong equals b.userid
+                    where a.com_state == 1 && a.isdel == false && a.com_ID == 15
+                    select new
+                    {
+                        a.com_ID,//商品ID
+                        a.com_price,//商品价格
+                        a.com_name,//商品名称
+                        a.com_content, //商品图片
+                        a.com_belong,//商家联系方式
+                        a.com_number,//商品数量
+                        a.com_postage,//商品邮费
+                        a.comment,//商品简介
+                        a.option2,//商品的重量
+                        option3 = b.username,//商品商家名字
+
+                    }).Distinct().OrderBy(ob => ob.com_ID);
+        foreach (var p in root)
+        {
+            <div class="product_item new">
+                <figure class="r_corners photoframe shadow relative hit animate_ftb long">
+                    <!--product preview-->
+                    <a href="#" class="d_block relative pp_wrap">
+                        <!--hot product-->
+                        <span class="hot_stripe"><img src="../../PIC/index_m/hot_product.png" alt=""></span>
+                        <img src="@(p.com_content)" class="tr_all_hover" alt="">
+                        <span role="button" data-popup="#@(p.com_ID)" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none">查看详情</span>
+                    </a>
+                    <!--description and price of product-->
+                    <figcaption>
+                        <h5 class="m_bottom_10"><a href="#" class="color_dark">@(p.com_name)</a></h5>
+                        <div class="clearfix">
+                            <p class="scheme_color f_left f_size_large m_bottom_15">￥@(p.com_price)</p>
+                            <!--评星点儿-->
+                            <ul class="horizontal_list f_right clearfix rating_list tr_all_hover">
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                        <a href="../../Home/Index">
+                            <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 m_left_5 p_hr_0"><i class="fa fa-files-o"></i></button>
+                        </a> <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 p_hr_0" onclick="joincollect(@(p.com_ID))"><i class="fa fa-heart-o"></i></button>
+</figcaption>
+                </figure>
+            </div>
+                 <!--弹出框-->
+                        <div class="popup_wrap d_none" id="@(p.com_ID)">
+                            <section class="popup r_corners shadow">
+                                <button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+                                <div class="clearfix">
+                                    <div class="custom_scrollbar">
+                                        <!--left popup column-->
+                                        <div class="f_left half_column">
+                                            <div class="relative d_inline_b m_bottom_10 qv_preview">
+                                                <span class="hot_stripe"><img src="../../PIC/index_m/sale_product.png" alt=""></span>
+                                                <img style="width:360px;height:360px" src="../../@(p.com_content)" class="tr_all_hover" alt="">
+                                            </div>
+                                            <!--carousel-->
+                                            <div class="relative qv_carousel_wrap m_bottom_20">
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_prev">
+                                                    <i class="fa fa-angle-left "></i>
+                                                </button>
+                                                <ul class="qv_carousel d_inline_middle">
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                </ul>
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_next">
+                                                    <i class="fa fa-angle-right "></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--商品信息框-->
+                                        <div class="f_right half_column">
+                                            <!--description-->
+                                            <h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">@(p.com_name)</a></h2>
+                                            <div class="m_bottom_10">
+                                                <!--rating-->
+                                                <ul class="horizontal_list d_inline_middle type_2 clearfix rating_list tr_all_hover">
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="d_inline_middle default_t_color f_size_small m_left_5">评价 </a>
+                                            </div>
+                                            <hr class="m_bottom_10 divider_type_3">
+                                            <table class="description_table m_bottom_10">
+                                                <tr>
+                                                    <td>生产地点:</td>
+                                                    <td><a href="#" class="color_dark">重庆南川</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商家名称:</td>
+                                                    <td><span class="color_green">昵称</span> @(p.option3)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系方式:</td>
+                                                    <td>@(p.com_belong)</td>
+                                                </tr>
+                                            </table>
+                                            <table class="description_table m_bottom_5">
+                                                <tr>
+                                                    <td>产品数量:</td>
+                                                    <td><span class="color_dark">@(p.com_number)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品重量:</td>
+                                                    <td><span class="color_dark">@(p.option2)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品类别:</td>
+                                                    <td>营养肉类</td>
+                                                </tr>
+                                            </table>
+                                            <hr class="divider_type_3 m_bottom_10">
+                                            <p class="m_bottom_10">@(p.comment)</p>
+                                            <hr class="divider_type_3 m_bottom_15">
+                                            <div class="m_bottom_15">
+                                                <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">￥@(p.com_price)</span>
+                                            </div>
+                                            <!--目前没有实现获取数量值，统一设置为1件-->
+                                            <table class="description_table type_2 m_bottom_15">
+                                                <tr>
+                                                    <td class="v_align_m">数量:</td>
+                                                    <td class="v_align_m">
+                                                        <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+                                                            <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                            <input id="quantity" type="text" name="" value="1" class="f_left">
+                                                            <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="clearfix m_bottom_15">
+                                                <button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                                                <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i onclick="joincollect(@(p.com_ID))" class="fa fa-heart-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">收藏</span></button>
+                                                <a href="../../Home/Index">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-files-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">我的订单</span></button>
+                                                </a>
+                                                <a href="../../Front/Aboutus">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0 relative"><i class="fa fa-question-circle f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">帮助中心</span></button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        //JS加入购物车
+                        <script type="text/javascript">
+                            //收藏
+                            function joincollect(productId)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCollect/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("收藏失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("收藏成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                            //加入购物车
+                            function joincart(productId, number)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                article.coms_num = number;
+
+
+                                var x = JSON.stringify(article)
+
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCart/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("加入购物车失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("加入购物车成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                        </script>
+                    }
+                }
+
+            }
+            @{
+    if (true)
+    {
+        var db = new NCtecanEntities();
+        var root = (from a in db.t_f_commodity
+                    join b in db.dl_basic_users on a.com_belong equals b.userid
+                    where a.com_state == 1 && a.isdel == false && a.com_ID == 17
+                    select new
+                    {
+                        a.com_ID,//商品ID
+                        a.com_price,//商品价格
+                        a.com_name,//商品名称
+                        a.com_content, //商品图片
+                        a.com_belong,//商家联系方式
+                        a.com_number,//商品数量
+                        a.com_postage,//商品邮费
+                        a.comment,//商品简介
+                        a.option2,//商品的重量
+                        option3 = b.username,//商品商家名字
+
+                    }).Distinct().OrderBy(ob => ob.com_ID);
+        foreach (var p in root)
+        {
+            <div class="product_item specials">
+                <figure class="r_corners photoframe shadow relative hit animate_ftb long">
+                    <!--product preview-->
+                    <a href="#" class="d_block relative pp_wrap">
+                        <!--hot product-->
+                        @*<span class="hot_stripe"><img src="../../PIC/index_m/hot_product.png" alt=""></span>*@
+                        <img src="@(p.com_content)" class="tr_all_hover" alt="">
+                        <span role="button" data-popup="#@(p.com_ID)" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none">查看详情</span>
+                    </a>
+                    <!--description and price of product-->
+                    <figcaption>
+                        <h5 class="m_bottom_10"><a href="#" class="color_dark">@(p.com_name)</a></h5>
+                        <div class="clearfix">
+                            <p class="scheme_color f_left f_size_large m_bottom_15">￥@(p.com_price)</p>
+                            <!--评星点儿-->
+                            <ul class="horizontal_list f_right clearfix rating_list tr_all_hover">
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                        <a href="../../Home/Index">
+                            <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 m_left_5 p_hr_0"><i class="fa fa-files-o"></i></button>
+                        </a> <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 p_hr_0" onclick="joincollect(@(p.com_ID))"><i class="fa fa-heart-o"></i></button>
+</figcaption>
+                </figure>
+            </div>
+                 <!--弹出框-->
+                        <div class="popup_wrap d_none" id="@(p.com_ID)">
+                            <section class="popup r_corners shadow">
+                                <button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+                                <div class="clearfix">
+                                    <div class="custom_scrollbar">
+                                        <!--left popup column-->
+                                        <div class="f_left half_column">
+                                            <div class="relative d_inline_b m_bottom_10 qv_preview">
+                                                <span class="hot_stripe"><img src="../../PIC/index_m/sale_product.png" alt=""></span>
+                                                <img style="width:360px;height:360px" src="../../@(p.com_content)" class="tr_all_hover" alt="">
+                                            </div>
+                                            <!--carousel-->
+                                            <div class="relative qv_carousel_wrap m_bottom_20">
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_prev">
+                                                    <i class="fa fa-angle-left "></i>
+                                                </button>
+                                                <ul class="qv_carousel d_inline_middle">
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                </ul>
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_next">
+                                                    <i class="fa fa-angle-right "></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--商品信息框-->
+                                        <div class="f_right half_column">
+                                            <!--description-->
+                                            <h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">@(p.com_name)</a></h2>
+                                            <div class="m_bottom_10">
+                                                <!--rating-->
+                                                <ul class="horizontal_list d_inline_middle type_2 clearfix rating_list tr_all_hover">
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="d_inline_middle default_t_color f_size_small m_left_5">评价 </a>
+                                            </div>
+                                            <hr class="m_bottom_10 divider_type_3">
+                                            <table class="description_table m_bottom_10">
+                                                <tr>
+                                                    <td>生产地点:</td>
+                                                    <td><a href="#" class="color_dark">重庆南川</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商家名称:</td>
+                                                    <td><span class="color_green">昵称</span> @(p.option3)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系方式:</td>
+                                                    <td>@(p.com_belong)</td>
+                                                </tr>
+                                            </table>
+                                            <table class="description_table m_bottom_5">
+                                                <tr>
+                                                    <td>产品数量:</td>
+                                                    <td><span class="color_dark">@(p.com_number)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品重量:</td>
+                                                    <td><span class="color_dark">@(p.option2)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品类别:</td>
+                                                    <td>可口小吃</td>
+                                                </tr>
+                                            </table>
+                                            <hr class="divider_type_3 m_bottom_10">
+                                            <p class="m_bottom_10">@(p.comment)</p>
+                                            <hr class="divider_type_3 m_bottom_15">
+                                            <div class="m_bottom_15">
+                                                <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">￥@(p.com_price)</span>
+                                            </div>
+                                            <!--目前没有实现获取数量值，统一设置为1件-->
+                                            <table class="description_table type_2 m_bottom_15">
+                                                <tr>
+                                                    <td class="v_align_m">数量:</td>
+                                                    <td class="v_align_m">
+                                                        <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+                                                            <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                            <input id="quantity" type="text" name="" value="1" class="f_left">
+                                                            <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="clearfix m_bottom_15">
+                                                <button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                                                <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i onclick="joincollect(@(p.com_ID))" class="fa fa-heart-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">收藏</span></button>
+                                                <a href="../../Home/Index">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-files-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">我的订单</span></button>
+                                                </a>
+                                                <a href="../../Front/Aboutus">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0 relative"><i class="fa fa-question-circle f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">帮助中心</span></button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        //JS加入购物车
+                        <script type="text/javascript">
+                            //收藏
+                            function joincollect(productId)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCollect/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("收藏失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("收藏成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                            //加入购物车
+                            function joincart(productId, number)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                article.coms_num = number;
+
+
+                                var x = JSON.stringify(article)
+
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCart/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("加入购物车失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("加入购物车成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                        </script>
+                    }
+                }
+
+            }
+            @{
+    if (true)
+    {
+        var db = new NCtecanEntities();
+        var root = (from a in db.t_f_commodity
+                    join b in db.dl_basic_users on a.com_belong equals b.userid
+                    where a.com_state == 1 && a.isdel == false && a.com_ID == 13
+                    select new
+                    {
+                        a.com_ID,//商品ID
+                        a.com_price,//商品价格
+                        a.com_name,//商品名称
+                        a.com_content, //商品图片
+                        a.com_belong,//商家联系方式
+                        a.com_number,//商品数量
+                        a.com_postage,//商品邮费
+                        a.comment,//商品简介
+                        a.option2,//商品的重量
+                        option3 = b.username,//商品商家名字
+
+                    }).Distinct().OrderBy(ob => ob.com_ID);
+        foreach (var p in root)
+        {
+            <div class="product_item hit">
+                <figure class="r_corners photoframe shadow relative hit animate_ftb long">
+                    <!--product preview-->
+                    <a href="#" class="d_block relative pp_wrap">
+                        <!--hot product-->
+                        @*<span class="hot_stripe"><img src="../../PIC/index_m/hot_product.png" alt=""></span>*@
+                        <img src="@(p.com_content)" class="tr_all_hover" alt="">
+                        <span role="button" data-popup="#@(p.com_ID)" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none">查看详情</span>
+                    </a>
+                    <!--description and price of product-->
+                    <figcaption>
+                        <h5 class="m_bottom_10"><a href="#" class="color_dark">@(p.com_name)</a></h5>
+                        <div class="clearfix">
+                            <p class="scheme_color f_left f_size_large m_bottom_15">￥@(p.com_price)</p>
+                            <!--评星点儿-->
+                            <ul class="horizontal_list f_right clearfix rating_list tr_all_hover">
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                        <a href="../../Home/Index">
+                            <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 m_left_5 p_hr_0"><i class="fa fa-files-o"></i></button>
+                        </a> <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 p_hr_0" onclick="joincollect(@(p.com_ID))"><i class="fa fa-heart-o"></i></button>
+</figcaption>
+                </figure>
+            </div>
+                 <!--弹出框-->
+                        <div class="popup_wrap d_none" id="@(p.com_ID)">
+                            <section class="popup r_corners shadow">
+                                <button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+                                <div class="clearfix">
+                                    <div class="custom_scrollbar">
+                                        <!--left popup column-->
+                                        <div class="f_left half_column">
+                                            <div class="relative d_inline_b m_bottom_10 qv_preview">
+                                                <span class="hot_stripe"><img src="../../PIC/index_m/sale_product.png" alt=""></span>
+                                                <img style="width:360px;height:360px" src="../../@(p.com_content)" class="tr_all_hover" alt="">
+                                            </div>
+                                            <!--carousel-->
+                                            <div class="relative qv_carousel_wrap m_bottom_20">
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_prev">
+                                                    <i class="fa fa-angle-left "></i>
+                                                </button>
+                                                <ul class="qv_carousel d_inline_middle">
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                </ul>
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_next">
+                                                    <i class="fa fa-angle-right "></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--商品信息框-->
+                                        <div class="f_right half_column">
+                                            <!--description-->
+                                            <h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">@(p.com_name)</a></h2>
+                                            <div class="m_bottom_10">
+                                                <!--rating-->
+                                                <ul class="horizontal_list d_inline_middle type_2 clearfix rating_list tr_all_hover">
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="d_inline_middle default_t_color f_size_small m_left_5">评价 </a>
+                                            </div>
+                                            <hr class="m_bottom_10 divider_type_3">
+                                            <table class="description_table m_bottom_10">
+                                                <tr>
+                                                    <td>生产地点:</td>
+                                                    <td><a href="#" class="color_dark">重庆南川</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商家名称:</td>
+                                                    <td><span class="color_green">昵称</span> @(p.option3)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系方式:</td>
+                                                    <td>@(p.com_belong)</td>
+                                                </tr>
+                                            </table>
+                                            <table class="description_table m_bottom_5">
+                                                <tr>
+                                                    <td>产品数量:</td>
+                                                    <td><span class="color_dark">@(p.com_number)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品重量:</td>
+                                                    <td><span class="color_dark">@(p.option2)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品类别:</td>
+                                                    <td>新鲜瓜果</td>
+                                                </tr>
+                                            </table>
+                                            <hr class="divider_type_3 m_bottom_10">
+                                            <p class="m_bottom_10">@(p.comment)</p>
+                                            <hr class="divider_type_3 m_bottom_15">
+                                            <div class="m_bottom_15">
+                                                <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">￥@(p.com_price)</span>
+                                            </div>
+                                            <!--目前没有实现获取数量值，统一设置为1件-->
+                                            <table class="description_table type_2 m_bottom_15">
+                                                <tr>
+                                                    <td class="v_align_m">数量:</td>
+                                                    <td class="v_align_m">
+                                                        <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+                                                            <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                            <input id="quantity" type="text" name="" value="1" class="f_left">
+                                                            <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="clearfix m_bottom_15">
+                                                <button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                                                <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i onclick="joincollect(@(p.com_ID))" class="fa fa-heart-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">收藏</span></button>
+                                                <a href="../../Home/Index">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-files-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">我的订单</span></button>
+                                                </a>
+                                                <a href="../../Front/Aboutus">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0 relative"><i class="fa fa-question-circle f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">帮助中心</span></button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        //JS加入购物车
+                        <script type="text/javascript">
+                            //收藏
+                            function joincollect(productId)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCollect/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("收藏失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("收藏成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                            //加入购物车
+                            function joincart(productId, number)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                article.coms_num = number;
+
+
+                                var x = JSON.stringify(article)
+
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCart/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("加入购物车失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("加入购物车成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                        </script>
+                    }
+                }
+
+            }
+            @{
+    if (true)
+    {
+        var db = new NCtecanEntities();
+        var root = (from a in db.t_f_commodity
+                    join b in db.dl_basic_users on a.com_belong equals b.userid
+                    where a.com_state == 1 && a.isdel == false && a.com_ID == 12
+                    select new
+                    {
+                        a.com_ID,//商品ID
+                        a.com_price,//商品价格
+                        a.com_name,//商品名称
+                        a.com_content, //商品图片
+                        a.com_belong,//商家联系方式
+                        a.com_number,//商品数量
+                        a.com_postage,//商品邮费
+                        a.comment,//商品简介
+                        a.option2,//商品的重量
+                        option3 = b.username,//商品商家名字
+
+                    }).Distinct().OrderBy(ob => ob.com_ID);
+        foreach (var p in root)
+        {
+            <div class="product_item featured">
+                <figure class="r_corners photoframe shadow relative hit animate_ftb long">
+                    <!--product preview-->
+                    <a href="#" class="d_block relative pp_wrap">
+                        <!--hot product-->
+                        @*<span class="hot_stripe"><img src="../../PIC/index_m/hot_product.png" alt=""></span>*@
+                        <img src="@(p.com_content)" class="tr_all_hover" alt="">
+                        <span role="button" data-popup="#@(p.com_ID)" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none">查看详情</span>
+                    </a>
+                    <!--description and price of product-->
+                    <figcaption>
+                        <h5 class="m_bottom_10"><a href="#" class="color_dark">@(p.com_name)</a></h5>
+                        <div class="clearfix">
+                            <p class="scheme_color f_left f_size_large m_bottom_15">￥@(p.com_price)</p>
+                            <!--评星点儿-->
+                            <ul class="horizontal_list f_right clearfix rating_list tr_all_hover">
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                        <a href="../../Home/Index">
+                            <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 m_left_5 p_hr_0"><i class="fa fa-files-o"></i></button>
+                        </a> <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 p_hr_0" onclick="joincollect(@(p.com_ID))"><i class="fa fa-heart-o"></i></button>
+</figcaption>
+                </figure>
+            </div>
+                 <!--弹出框-->
+                        <div class="popup_wrap d_none" id="@(p.com_ID)">
+                            <section class="popup r_corners shadow">
+                                <button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+                                <div class="clearfix">
+                                    <div class="custom_scrollbar">
+                                        <!--left popup column-->
+                                        <div class="f_left half_column">
+                                            <div class="relative d_inline_b m_bottom_10 qv_preview">
+                                                <span class="hot_stripe"><img src="../../PIC/index_m/sale_product.png" alt=""></span>
+                                                <img style="width:360px;height:360px" src="../../@(p.com_content)" class="tr_all_hover" alt="">
+                                            </div>
+                                            <!--carousel-->
+                                            <div class="relative qv_carousel_wrap m_bottom_20">
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_prev">
+                                                    <i class="fa fa-angle-left "></i>
+                                                </button>
+                                                <ul class="qv_carousel d_inline_middle">
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                </ul>
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_next">
+                                                    <i class="fa fa-angle-right "></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--商品信息框-->
+                                        <div class="f_right half_column">
+                                            <!--description-->
+                                            <h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">@(p.com_name)</a></h2>
+                                            <div class="m_bottom_10">
+                                                <!--rating-->
+                                                <ul class="horizontal_list d_inline_middle type_2 clearfix rating_list tr_all_hover">
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="d_inline_middle default_t_color f_size_small m_left_5">评价 </a>
+                                            </div>
+                                            <hr class="m_bottom_10 divider_type_3">
+                                            <table class="description_table m_bottom_10">
+                                                <tr>
+                                                    <td>生产地点:</td>
+                                                    <td><a href="#" class="color_dark">重庆南川</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商家名称:</td>
+                                                    <td><span class="color_green">昵称</span> @(p.option3)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系方式:</td>
+                                                    <td>@(p.com_belong)</td>
+                                                </tr>
+                                            </table>
+                                            <table class="description_table m_bottom_5">
+                                                <tr>
+                                                    <td>产品数量:</td>
+                                                    <td><span class="color_dark">@(p.com_number)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品个数:</td>
+                                                    <td><span class="color_dark">@(p.option2)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品类别:</td>
+                                                    <td>精致物件</td>
+                                                </tr>
+                                            </table>
+                                            <hr class="divider_type_3 m_bottom_10">
+                                            <p class="m_bottom_10">@(p.comment)</p>
+                                            <hr class="divider_type_3 m_bottom_15">
+                                            <div class="m_bottom_15">
+                                                <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">￥@(p.com_price)</span>
+                                            </div>
+                                            <!--目前没有实现获取数量值，统一设置为1件-->
+                                            <table class="description_table type_2 m_bottom_15">
+                                                <tr>
+                                                    <td class="v_align_m">数量:</td>
+                                                    <td class="v_align_m">
+                                                        <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+                                                            <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                            <input id="quantity" type="text" name="" value="1" class="f_left">
+                                                            <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="clearfix m_bottom_15">
+                                                <button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                                                <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i onclick="joincollect(@(p.com_ID))" class="fa fa-heart-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">收藏</span></button>
+                                                <a href="../../Home/Index">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-files-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">我的订单</span></button>
+                                                </a>
+                                                <a href="../../Front/Aboutus">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0 relative"><i class="fa fa-question-circle f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">帮助中心</span></button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        //JS加入购物车
+                        <script type="text/javascript">
+                            //收藏
+                            function joincollect(productId)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCollect/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("收藏失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("收藏成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                            //加入购物车
+                            function joincart(productId, number)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                article.coms_num = number;
+
+
+                                var x = JSON.stringify(article)
+
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCart/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("加入购物车失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("加入购物车成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                        </script>
+                    }
+                }
+
+            }
+            @{
+    if (true)
+    {
+        var db = new NCtecanEntities();
+        var root = (from a in db.t_f_commodity
+                    join b in db.dl_basic_users on a.com_belong equals b.userid
+                    where a.com_state == 1 && a.isdel == false && a.com_ID == 16
+                    select new
+                    {
+                        a.com_ID,//商品ID
+                        a.com_price,//商品价格
+                        a.com_name,//商品名称
+                        a.com_content, //商品图片
+                        a.com_belong,//商家联系方式
+                        a.com_number,//商品数量
+                        a.com_postage,//商品邮费
+                        a.comment,//商品简介
+                        a.option2,//商品的重量
+                        option3 = b.username,//商品商家名字
+
+                    }).Distinct().OrderBy(ob => ob.com_ID);
+        foreach (var p in root)
+        {
+            <div class="product_item specials">
+                <figure class="r_corners photoframe shadow relative hit animate_ftb long">
+                    <!--product preview-->
+                    <a href="#" class="d_block relative pp_wrap">
+                        <!--hot product-->
+                        @*<span class="hot_stripe"><img src="../../PIC/index_m/hot_product.png" alt=""></span>*@
+                        <img src="@(p.com_content)" class="tr_all_hover" alt="">
+                        <span role="button" data-popup="#@(p.com_ID)" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none">查看详情</span>
+                    </a>
+                    <!--description and price of product-->
+                    <figcaption>
+                        <h5 class="m_bottom_10"><a href="#" class="color_dark">@(p.com_name)</a></h5>
+                        <div class="clearfix">
+                            <p class="scheme_color f_left f_size_large m_bottom_15">￥@(p.com_price)</p>
+                            <!--评星点儿-->
+                            <ul class="horizontal_list f_right clearfix rating_list tr_all_hover">
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                        <a href="../../Home/Index">
+                            <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 m_left_5 p_hr_0"><i class="fa fa-files-o"></i></button>
+                        </a> <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 p_hr_0" onclick="joincollect(@(p.com_ID))"><i class="fa fa-heart-o"></i></button>
+</figcaption>
+                </figure>
+            </div>
+                 <!--弹出框-->
+                        <div class="popup_wrap d_none" id="@(p.com_ID)">
+                            <section class="popup r_corners shadow">
+                                <button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+                                <div class="clearfix">
+                                    <div class="custom_scrollbar">
+                                        <!--left popup column-->
+                                        <div class="f_left half_column">
+                                            <div class="relative d_inline_b m_bottom_10 qv_preview">
+                                                <span class="hot_stripe"><img src="../../PIC/index_m/sale_product.png" alt=""></span>
+                                                <img style="width:360px;height:360px" src="../../@(p.com_content)" class="tr_all_hover" alt="">
+                                            </div>
+                                            <!--carousel-->
+                                            <div class="relative qv_carousel_wrap m_bottom_20">
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_prev">
+                                                    <i class="fa fa-angle-left "></i>
+                                                </button>
+                                                <ul class="qv_carousel d_inline_middle">
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                </ul>
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_next">
+                                                    <i class="fa fa-angle-right "></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--商品信息框-->
+                                        <div class="f_right half_column">
+                                            <!--description-->
+                                            <h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">@(p.com_name)</a></h2>
+                                            <div class="m_bottom_10">
+                                                <!--rating-->
+                                                <ul class="horizontal_list d_inline_middle type_2 clearfix rating_list tr_all_hover">
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="d_inline_middle default_t_color f_size_small m_left_5">评价 </a>
+                                            </div>
+                                            <hr class="m_bottom_10 divider_type_3">
+                                            <table class="description_table m_bottom_10">
+                                                <tr>
+                                                    <td>生产地点:</td>
+                                                    <td><a href="#" class="color_dark">重庆南川</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商家名称:</td>
+                                                    <td><span class="color_green">昵称</span> @(p.option3)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系方式:</td>
+                                                    <td>@(p.com_belong)</td>
+                                                </tr>
+                                            </table>
+                                            <table class="description_table m_bottom_5">
+                                                <tr>
+                                                    <td>产品数量:</td>
+                                                    <td><span class="color_dark">@(p.com_number)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品重量:</td>
+                                                    <td><span class="color_dark">@(p.option2)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品类别:</td>
+                                                    <td>可口小吃</td>
+                                                </tr>
+                                            </table>
+                                            <hr class="divider_type_3 m_bottom_10">
+                                            <p class="m_bottom_10">@(p.comment)</p>
+                                            <hr class="divider_type_3 m_bottom_15">
+                                            <div class="m_bottom_15">
+                                                <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">￥@(p.com_price)</span>
+                                            </div>
+                                            <!--目前没有实现获取数量值，统一设置为1件-->
+                                            <table class="description_table type_2 m_bottom_15">
+                                                <tr>
+                                                    <td class="v_align_m">数量:</td>
+                                                    <td class="v_align_m">
+                                                        <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+                                                            <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                            <input id="quantity" type="text" name="" value="1" class="f_left">
+                                                            <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="clearfix m_bottom_15">
+                                                <button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                                                <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i onclick="joincollect(@(p.com_ID))" class="fa fa-heart-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">收藏</span></button>
+                                                <a href="../../Home/Index">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-files-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">我的订单</span></button>
+                                                </a>
+                                                <a href="../../Front/Aboutus">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0 relative"><i class="fa fa-question-circle f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">帮助中心</span></button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        //JS加入购物车
+                        <script type="text/javascript">
+                            //收藏
+                            function joincollect(productId)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCollect/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("收藏失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("收藏成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                            //加入购物车
+                            function joincart(productId, number)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                article.coms_num = number;
+
+
+                                var x = JSON.stringify(article)
+
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCart/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("加入购物车失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("加入购物车成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                        </script>
+                    }
+                }
+
+            }
+            @{
+    if (true)
+    {
+        var db = new NCtecanEntities();
+        var root = (from a in db.t_f_commodity
+                    join b in db.dl_basic_users on a.com_belong equals b.userid
+                    where a.com_state == 1 && a.isdel == false && a.com_ID == 14
+                    select new
+                    {
+                        a.com_ID,//商品ID
+                        a.com_price,//商品价格
+                        a.com_name,//商品名称
+                        a.com_content, //商品图片
+                        a.com_belong,//商家联系方式
+                        a.com_number,//商品数量
+                        a.com_postage,//商品邮费
+                        a.comment,//商品简介
+                        a.option2,//商品的重量
+                        option3 = b.username,//商品商家名字
+
+                    }).Distinct().OrderBy(ob => ob.com_ID);
+        foreach (var p in root)
+        {
+            <div class="product_item rated">
+                <figure class="r_corners photoframe shadow relative hit animate_ftb long">
+                    <!--product preview-->
+                    <a href="#" class="d_block relative pp_wrap">
+                        <!--hot product-->
+                        @*<span class="hot_stripe"><img src="../../PIC/index_m/hot_product.png" alt=""></span>*@
+                        <img src="@(p.com_content)" class="tr_all_hover" alt="">
+                        <span role="button" data-popup="#@(p.com_ID)" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none">查看详情</span>
+                    </a>
+                    <!--description and price of product-->
+                    <figcaption>
+                        <h5 class="m_bottom_10"><a href="#" class="color_dark">@(p.com_name)</a></h5>
+                        <div class="clearfix">
+                            <p class="scheme_color f_left f_size_large m_bottom_15">￥@(p.com_price)</p>
+                            <!--评星点儿-->
+                            <ul class="horizontal_list f_right clearfix rating_list tr_all_hover">
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star-o empty tr_all_hover"></i>
+                                    <i class="fa fa-star active tr_all_hover"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                        <a href="../../Home/Index">
+                            <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 m_left_5 p_hr_0"><i class="fa fa-files-o"></i></button>
+                        </a> <button class="button_type_4 bg_light_color_2 tr_all_hover f_right r_corners color_dark mw_0 p_hr_0" onclick="joincollect(@(p.com_ID))"><i class="fa fa-heart-o"></i></button>
+</figcaption>
+                </figure>
+            </div>
+                 <!--弹出框-->
+                        <div class="popup_wrap d_none" id="@(p.com_ID)">
+                            <section class="popup r_corners shadow">
+                                <button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+                                <div class="clearfix">
+                                    <div class="custom_scrollbar">
+                                        <!--left popup column-->
+                                        <div class="f_left half_column">
+                                            <div class="relative d_inline_b m_bottom_10 qv_preview">
+                                                <span class="hot_stripe"><img src="../../PIC/index_m/sale_product.png" alt=""></span>
+                                                <img style="width:360px;height:360px" src="../../@(p.com_content)" class="tr_all_hover" alt="">
+                                            </div>
+                                            <!--carousel-->
+                                            <div class="relative qv_carousel_wrap m_bottom_20">
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_prev">
+                                                    <i class="fa fa-angle-left "></i>
+                                                </button>
+                                                <ul class="qv_carousel d_inline_middle">
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                    <li data-src="@(p.com_content)"><img src="@(p.com_content)" alt=""></li>
+                                                </ul>
+                                                <button class="button_type_11 t_align_c f_size_ex_large bg_cs_hover r_corners d_inline_middle bg_tr tr_all_hover qv_btn_next">
+                                                    <i class="fa fa-angle-right "></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--商品信息框-->
+                                        <div class="f_right half_column">
+                                            <!--description-->
+                                            <h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">@(p.com_name)</a></h2>
+                                            <div class="m_bottom_10">
+                                                <!--rating-->
+                                                <ul class="horizontal_list d_inline_middle type_2 clearfix rating_list tr_all_hover">
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li class="active">
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-star-o empty tr_all_hover"></i>
+                                                        <i class="fa fa-star active tr_all_hover"></i>
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="d_inline_middle default_t_color f_size_small m_left_5">评价 </a>
+                                            </div>
+                                            <hr class="m_bottom_10 divider_type_3">
+                                            <table class="description_table m_bottom_10">
+                                                <tr>
+                                                    <td>生产地点:</td>
+                                                    <td><a href="#" class="color_dark">重庆南川</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>商家名称:</td>
+                                                    <td><span class="color_green">昵称</span> @(p.option3)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系方式:</td>
+                                                    <td>@(p.com_belong)</td>
+                                                </tr>
+                                            </table>
+                                            <table class="description_table m_bottom_5">
+                                                <tr>
+                                                    <td>产品数量:</td>
+                                                    <td><span class="color_dark">@(p.com_number)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品重量:</td>
+                                                    <td><span class="color_dark">@(p.option2)</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>产品类别:</td>
+                                                    <td>五谷杂粮</td>
+                                                </tr>
+                                            </table>
+                                            <hr class="divider_type_3 m_bottom_10">
+                                            <p class="m_bottom_10">@(p.comment)</p>
+                                            <hr class="divider_type_3 m_bottom_15">
+                                            <div class="m_bottom_15">
+                                                <span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">￥@(p.com_price)</span>
+                                            </div>
+                                            <!--目前没有实现获取数量值，统一设置为1件-->
+                                            <table class="description_table type_2 m_bottom_15">
+                                                <tr>
+                                                    <td class="v_align_m">数量:</td>
+                                                    <td class="v_align_m">
+                                                        <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+                                                            <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                                                            <input id="quantity" type="text" name="" value="1" class="f_left">
+                                                            <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="clearfix m_bottom_15">
+                                                <button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large" onclick="joincart(@(p.com_ID),1)">加入购物车</button>
+                                                <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i onclick="joincollect(@(p.com_ID))" class="fa fa-heart-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">收藏</span></button>
+                                                <a href="../../Home/Index">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-files-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">我的订单</span></button>
+                                                </a>
+                                                <a href="../../Front/Aboutus">
+                                                    <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0 relative"><i class="fa fa-question-circle f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">帮助中心</span></button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        //JS加入购物车
+                        <script type="text/javascript">
+                            //收藏
+                            function joincollect(productId)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCollect/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("收藏失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("收藏成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                            //加入购物车
+                            function joincart(productId, number)
+                            {
+                                var article = new Object();
+                                article.coms_ID = productId;
+                                article.coms_num = number;
+
+
+                                var x = JSON.stringify(article)
+
+                                $.ajax({
+                                    type: "POST",
+                                    contentType: "application/json;utf-8",
+                                    url: "/Front/JoinCart/",
+                                    data: "{json:'" + JSON.stringify(article) + "'}",
+                                    dataType: "",
+                                    success: function (data, textStatus) {
+                                        if (data == "existed") {
+                                            alert("加入购物车失败，请重试！");
+                                        }
+                                        else if (data == "success") {
+                                            alert("加入购物车成功！");
+                                        }
+                                        else {
+                                            alert(data);
+                                        }
+                                    },
+                                    complete: function (XMLHttpRequest, textStatus) {
+                                        //HideLoading();
+                                    },
+                                    error: function (statusText, responseText) {
+                                        //请求出错处理
+                                        alert(statusText.responseText);
+                                    }
+                                });
+                            }
+                        </script>
+                    }
+                }
+
+            }
+        </section>
+        <!--品牌秀场-->
+        <div class="clearfix m_bottom_25 m_sm_bottom_20">
+            <h2 class="tt_uppercase color_dark f_left heading2 animate_fade f_mxs_none m_mxs_bottom_15">品牌秀场</h2>
+            <div class="f_right clearfix nav_buttons_wrap animate_fade f_mxs_none">
+                <button class="button_type_7 bg_cs_hover box_s_none f_size_ex_large t_align_c bg_light_color_1 f_left tr_delay_hover r_corners pb_prev"><i class="fa fa-angle-left"></i></button>
+                <button class="button_type_7 bg_cs_hover box_s_none f_size_ex_large t_align_c bg_light_color_1 f_left m_left_5 tr_delay_hover r_corners pb_next"><i class="fa fa-angle-right"></i></button>
+            </div>
+        </div>
+        <!--product brands carousel-->
+        <div class="product_brands m_bottom_45 m_sm_bottom_35">
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+            <a href="#" class="d_block t_align_c animate_fade"><img src="../../PIC/index_m/brand_logo.jpg" alt=""></a>
+        </div>
+        <!--blog-->
+        <div class="row clearfix m_bottom_45 m_sm_bottom_35">
+            <div class="col-lg-6 col-md-6 col-sm-12 m_sm_bottom_35 blog_animate animate_ftr">
+                <div class="clearfix m_bottom_25 m_sm_bottom_20">
+                    <h2 class="tt_uppercase color_dark f_left">南川生活</h2>
+                    <div class="f_right clearfix nav_buttons_wrap">
+                        <button class="button_type_7 bg_cs_hover box_s_none f_size_ex_large bg_light_color_1 f_left tr_delay_hover r_corners blog_prev"><i class="fa fa-angle-left"></i></button>
+                        <button class="button_type_7 bg_cs_hover box_s_none f_size_ex_large bg_light_color_1 f_left m_left_5 tr_delay_hover r_corners blog_next"><i class="fa fa-angle-right"></i></button>
+                    </div>
+                </div>
+                <!--南川生活-->
+                <div class="blog_carousel">
+                    <div class="clearfix">
+                        <!--image-->
+                        <a href="#" class="d_block photoframe relative shadow wrapper r_corners f_left m_right_20 animate_ftt f_mxs_none m_mxs_bottom_10">
+                            <img class="tr_all_long_hover" src="../../PIC/index_m/blog_img_1.jpg" alt="">
+                        </a>
+                        <!--post content-->
+                        <div class="mini_post_content">
+                            <h4 class="m_bottom_5 animate_ftr"><a href="#" class="color_dark"><b>优美自然风光的南川</b></a></h4>
+                            <p class="f_size_medium m_bottom_10 animate_ftr">2016.05.09 星期一</p>
+                            <p class="m_bottom_10 animate_ftr">南川是一座旅游度假城。旅游资源得天独厚，金佛山幅员1300平方公里，是重庆唯一集国家风景名胜区、国家森林公园、国家自然保护区、国家自然遗产、国家4A级景区等桂冠于一身的中国最具魅力旅游景区，被誉为“东方阿尔卑斯山”。</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <!--image-->
+                        <a href="#" class="d_block photoframe relative shadow wrapper r_corners f_left m_right_20 animate_ftt f_mxs_none m_mxs_bottom_10">
+                            <img class="tr_all_long_hover" src="../../PIC/index_m/blog_img_2.jpg" alt="">
+                        </a>
+                        <!--post content-->
+                        <div class="mini_post_content">
+                            <h4 class="m_bottom_5 animate_ftr"><a href="#" class="color_dark"><b>快速发展的南川</b></a></h4>
+                            <p class="f_size_medium m_bottom_10 animate_ftr">2016.05.09 星期一</p>
+                            <p class="m_bottom_10 animate_ftr">南川处于快速发展时期，全区上下在区委、区政府的正确领导下,抢抓主体功能区划战略实施和转型发展试点机遇。</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <!--image-->
+                        <a href="#" class="d_block photoframe relative shadow wrapper r_corners f_left m_right_20 animate_ftt f_mxs_none m_mxs_bottom_10">
+                            <img class="tr_all_long_hover" src="../../PIC/index_m/blog_img_3.jpg" alt="">
+                        </a>
+                        <!--post content-->
+                        <div class="mini_post_content">
+                            <h4 class="m_bottom_5 animate_ftr"><a href="#" class="color_dark"><b>舌尖上的南川</b></a></h4>
+                            <p class="f_size_medium m_bottom_10 animate_ftr">2016.05.09 星期一</p>
+                            <p class="m_bottom_10 animate_ftr">南川金佛山特色小吃推荐有关的信息,糯米油粽糯米油棕是南川区金佛山一带流传已久的民间传统小吃,具有棕皮酥脆,粽肉柔和,糍糯鲜香的特点。 </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--历史文化-->
+            <div class="col-lg-6 col-md-6 col-sm-12 ti_animate animate_ftr">
+                <div class="clearfix m_bottom_25 m_sm_bottom_20">
+                    <h2 class="tt_uppercase color_dark f_left f_mxs_none m_mxs_bottom_15">南川历史文化</h2>
+                    <div class="f_right clearfix nav_buttons_wrap f_mxs_none">
+                        <button class="button_type_7 bg_cs_hover box_s_none f_size_ex_large bg_light_color_1 f_left tr_delay_hover r_corners ti_prev"><i class="fa fa-angle-left"></i></button>
+                        <button class="button_type_7 bg_cs_hover box_s_none f_size_ex_large bg_light_color_1 f_left m_left_5 tr_delay_hover r_corners ti_next"><i class="fa fa-angle-right"></i></button>
+                    </div>
+                </div>
+                <!--testimonials carousel-->
+                <div class="testiomials_carousel">
+                    <div>
+                        <blockquote class="r_corners shadow f_size_large relative m_bottom_15 animate_ftr">朝辞白帝彩云间,千里江陵一日还,<br />两岸猿声啼不住,轻舟已过万重山……</blockquote>
+                        <img class="circle m_left_20 d_inline_middle animate_ftr" src="../../PIC/index_m/testimonial_img_1.jpg" alt="">
+                        <div class="d_inline_middle m_left_15 animate_ftr">
+                            <h5 class="color_dark"><b>李白</b></h5>
+                            <p>唐朝诗仙</p>
+                        </div>
+                    </div>
+                    <div>
+                        <blockquote class="r_corners shadow f_size_large relative m_bottom_15">踏着老树蔽日下的芬兰木栈道，山风拍打的箭竹浪声，切身用“五觉”体验金佛山神奇之风：听风之声、观风之魅、嗅风之息、品风之味、捕风之灵。</blockquote>
+                        <img class="circle m_left_20 d_inline_middle" src="../../PIC/index_m/testimonial_img_2.jpg" alt="">
+                        <div class="d_inline_middle m_left_15">
+                            <h5 class="color_dark"><b>杜甫</b></h5>
+                            <p>唐朝诗圣</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

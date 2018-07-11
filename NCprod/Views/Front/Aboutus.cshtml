@@ -1,0 +1,347 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Heard.cshtml";
+}
+<!--菜单栏-->
+<section class="menu_wrap relative">
+    <div class="container clearfix">
+        <!--button for responsive menu-->
+        <button id="menu_button" class="r_corners centered_db d_none tr_all_hover d_xs_block m_bottom_10">
+            <span class="centered_db r_corners"></span>
+            <span class="centered_db r_corners"></span>
+            <span class="centered_db r_corners"></span>
+        </button>
+        <!--main menu-->
+        <nav role="navigation" class="f_left f_xs_none d_xs_none">
+            <ul class="horizontal_list main_menu clearfix">
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Index" class="tr_delay_hover color_light tt_uppercase"><b>特色推荐</b></a>
+                    <!--sub menu-->
+                    <div class="sub_menu_wrap top_arrow d_xs_none tr_all_hover clearfix r_corners w_xs_auto">
+                        <div class="f_left f_xs_none">
+                            <b class="color_dark m_left_20 m_bottom_5 m_top_5 d_inline_b">销量TOP</b>
+                            <ul class="sub_menu first">
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Tea"><i class="fa fa-coffee"></i>&nbsp;&nbsp;清新茶类</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Rice"><i class="fa fa-pagelines"></i>&nbsp;&nbsp;五谷杂粮</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Meat"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;营养肉类</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Jfood"><i class="fa fa-beer"></i>&nbsp;&nbsp;可口小吃</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Fruit"><i class="fa fa-lemon-o"></i>&nbsp;&nbsp;清新瓜果</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Gift"><i class="fa fa-gift"></i>&nbsp;&nbsp;精致物件</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../Front/Aboutus"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;关于我们</a></li>
+                            </ul>
+                        </div>
+                        <div class="f_left f_xs_none">
+                            <b class="color_dark m_left_20 m_bottom_5 m_top_5 d_inline_b">购物指南</b>
+                            <ul class="sub_menu first">
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">账户自助服务</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">新账户注册</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">配送说明</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">怎么样下订单</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">支付方式</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="../../Front/Aboutus">帮助中心</a></li>
+                            </ul>
+                        </div>
+                        <div class="f_left m_left_10 m_xs_left_0 f_xs_none">
+                            <b class="color_dark m_left_20 m_bottom_5 m_top_5 d_inline_b">友情链接</b>
+                            <ul class="sub_menu">
+                                <li><a class="color_dark tr_delay_hover" href="http://baike.baidu.com/link?url=1vX5bkJWaR959SOxZ4aDuSMtkdmejRof-UZxgWeqxpXDoJTSmdH27izaIcxWhrYhw6CuZxc24XWjQkfxizj_T_">关于重庆南川区</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="http://baike.baidu.com/link?url=Gyk8YUvNsGfopzUosACtfVB0GTSUYEwC1IRlrWcse1wIPaWQfgaPLhEfxOfEw_BhlogXxV1GQyOwgZIfRvFE8yF9lby7JDCD6sqCRTT5U8O">美丽的重庆</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="http://www.bytravel.cn/view/top10/index729.html">南川十大景点</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="http://www.cqnc.gov.cn/">重庆南川政府</a></li>
+                                <li><a class="color_dark tr_delay_hover" href="http://trip.elong.com/nanchuan/">南川旅游攻略</a></li>
+                            </ul>
+                        </div>
+                        <img src="../../PIC/index_m/woman_image_1.jpg" class="d_sm_none f_right m_bottom_10" alt="">
+                    </div>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Tea" class="tr_delay_hover color_light tt_uppercase"><b>清新茶类</b></a>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Rice" class="tr_delay_hover color_light tt_uppercase"><b>五谷杂粮</b></a>
+
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Meat" class="tr_delay_hover color_light tt_uppercase"><b>营养肉类</b></a>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Jfood" class="tr_delay_hover color_light tt_uppercase"><b>可口小吃</b></a>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Fruit" class="tr_delay_hover color_light tt_uppercase"><b>新鲜瓜果</b></a>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5">
+                    <a href="../Front/Gift" class="tr_delay_hover color_light tt_uppercase"><b>精致物件</b></a>
+                </li>
+                <li class="current relative f_xs_none m_xs_bottom_5"><a href="../Front/Aboutus" class="tr_delay_hover color_light tt_uppercase"><b>关于南川</b></a></li>
+            </ul>
+        </nav>
+        <button class="f_right search_button tr_all_hover f_xs_none d_xs_none">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+    <!--search form-->
+    <div class="searchform_wrap tf_xs_none tr_all_hover">
+        <div class="container vc_child h_inherit relative">
+            <form role="search" class="d_inline_middle full_width">
+                <input type="text" name="search" placeholder="请输入搜索内容" class="f_size_large">
+            </form>
+            <button class="close_search_form tr_all_hover d_xs_none color_dark">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+    </div>
+</section>
+<!--内容栏-->
+<div class="page_content_offset">
+
+            <div class="container">
+                <h2 class="tt_uppercase color_dark m_bottom_30">我们的南川</h2>
+                <div class="clearfix m_bottom_35">
+                    <div class="photoframe shadow r_corners wrapper f_left f_xs_none m_xs_right_0 m_xs_bottom_30 d_xs_inline_b m_right_20">
+                        <img src="../../PIC/Index_m/portfolio_img_32.jpg" alt="" class="tr_all_long_hover">
+                    </div>
+                    <h5 class="fw_medium m_bottom_10">南川文化</h5>
+                    <p class="m_bottom_10"><b>南川区位于重庆南部，地处渝黔、渝湘经济带交汇点，属重庆城市发展新区，东南与贵州省道真、正安、桐梓县接壤，东北与武隆县为邻，北接涪陵区，西连巴南区、綦江区。
+南川是一个历史悠久、资源富集、交通便捷、生态优越、开明开放的秀美隽永之城。
+境内的金佛山被誉为“南方如初佛地，巴蜀第一名山”，素有“北有峨眉、南有金佛，东朝普陀、西拜金佛”之说。先后被评为全国文化先进区、中国楹联文化之乡、民间歌舞之乡、笙歌苗舞之乡、板凳龙舞之乡。</b></p>
+                    @*<p>Donec porta diam eu massa. Quisque diam lorem, interdum vitae,dapibus ac, scelerisque vitae, pede. Donec eget tellus non erat lacinia fermentum. Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipis. Mauris accumsan nulla vel diam. </p>*@
+                </div>
+                <div class="clearfix m_bottom_35">
+                    <div class="photoframe shadow r_corners wrapper f_left f_xs_none m_xs_right_0 m_xs_bottom_30 d_xs_inline_b m_right_20">
+                        <img src="../../PIC/Index_m/portfolio_img_321.jpg" alt="" class="tr_all_long_hover">
+                    </div>
+                    <h5 class="fw_medium m_bottom_10">南川旅游</h5>
+                    <p class="m_bottom_10">
+                        <b>南川区旅游风景区有金佛山、楠竹山、山王坪、神龙峡、黎香湖等，文物保护单位有抗蒙遗址龙岩城、东汉摩崖石刻、东汉尹子祠等。
+金佛山位于南川区南部，素被誉为蜀中四大名山之一。金佛山集国家森林公园、全国重点风景名胜区、国家自然保护区、国家首批科普教育基地、国家自然遗产、中国最具影响力旅游景区“六项桂冠”于一身，是重庆最具特色的旅游胜地。金佛山核心景区规划面积441平方公里，最高峰2251米，融山、水、石、林、泉、洞、瀑于一体。
+                        </b>
+                    </p>
+                    @*<p>Donec porta diam eu massa. Quisque diam lorem, interdum vitae,dapibus ac, scelerisque vitae, pede. Donec eget tellus non erat lacinia fermentum. Donec in velit vel ipsum auctor pulvinar. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipis. Mauris accumsan nulla vel diam. </p>*@
+                </div>
+                
+                <div class="row clearfix">
+                    <div class="col-lg-4 col-sm-4 col-md-4 m_bottom_40">
+                        <h2 class="tt_uppercase color_dark m_bottom_25">购物指南</h2>
+                        <!--accordion-->
+                        <div class="accordion">
+                            <!--accordion item-->
+                            <div class="accordion_item r_corners shadow wrapper m_bottom_5">
+                                <h3 class="color_light active a_title relative tr_all_hover">
+                                    账户服务
+                                    <span class="minus_icon tr_all_hover">-</span>
+                                    <span class="plus_icon tr_all_hover">+</span>
+                                </h3>
+                                <div class="bg_light_color_3 a_content">
+                                    <p class="m_bottom_10">“快速注册”或“登录”区成功注册或登录后，点击页面最上方“我的中心”。 </p>
+                                    <p>“我的中心”分为：<br />
+       我的订单：可查看、修改、确认订单。<br />
+                                    我的收藏：可查看、删除收藏。<br />
+                                    我的购物车：可查看、删除加入购物车的商品。<br />
+       收货地址：可查看、修改、确认收货地址。<br />
+       填写资料：可查看、编辑个人资料。<br />
+       密码管理：可修改密码。</p>
+                                </div>
+                            </div>
+                            <!--accordion item-->
+                            <div class="accordion_item r_corners shadow wrapper m_bottom_5">
+                                <h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+                                    支付服务
+                                    <span class="minus_icon tr_all_hover">-</span>
+                                    <span class="plus_icon tr_all_hover">+</span>
+                                </h3>
+                                <div class="bg_light_color_3 a_content">
+                                    <p class="m_bottom_10">本平台暂时未有自己的支付平台 </p>
+                                    <p>用户可通过第三方支付方式支付给商家<br />
+                                    例如：<br />
+                                    微信钱包、QQ钱包、支付宝等等</p>
+                                </div>
+                            </div>
+                            <!--accordion item-->
+                            <div class="accordion_item r_corners shadow wrapper m_bottom_5">
+                                <h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+                                    配送服务
+                                    <span class="minus_icon tr_all_hover">-</span>
+                                    <span class="plus_icon tr_all_hover">+</span>
+                                </h3>
+                                <div class="bg_light_color_3 a_content">
+                                    <p class="m_bottom_10">为感谢广大用户的支持与厚爱，推出单笔消费98元免首重费用的活动。</p>
+                                    <p>特别说明：<br />
+（1）免运费服务包含普通快递上门，不含特快专递服务。<br />
+（2）购物金额少于98元，暂不能享受免运费服务，特殊优惠活动除外。<br />
+（3）订单中商品总重量超过1Kg时，超重部分的运费由用户承担。<br />
+（4）不享受免运费服务时，运费将按实际重量计算，由用户自行承担。<br />
+（5）香港、澳门、台湾、钓鱼岛地区、及海外订单暂不能享受免运费服务。<br />（6）开发商对免运费服务拥有最终解释权。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-md-4 m_bottom_40">
+                        <h2 class="tt_uppercase color_dark m_bottom_25">常见问题</h2>
+                        <!--toggle-->
+                        <div class="accordion toggle">
+                            <!--toggle item-->
+                            <div class="accordion_item r_corners shadow wrapper m_bottom_5">
+                                <h3 class="color_light active a_title relative tr_all_hover">
+                                    退换货物
+                                    <span class="minus_icon tr_all_hover">-</span>
+                                    <span class="plus_icon tr_all_hover">+</span>
+                                </h3>
+                                <div class="bg_light_color_3 a_content">
+                                    <p>
+                                        您收到商品之日起（以您签收日期为准至您办理退换货时间为止）7日内，如符合以下条件，我们将提供无理由退换货的服务，并且由我们承担往返运费：<br />
+                                        1、商品及商品的外包装没有损坏（包括包裹填充物及外包装箱或外包装袋），并保持出售时的原质原样，不影响再次销售（有质量问题除外）；<br />
+                                        2、注明退货原因，如果商品存在质量问题，请务必说明；<br />
+                                        3、准备好原始发票及和茶网发货清单；<br />
+                                        4、如果成套商品中有部分商品存在质量问题，在办理退货时，必须提供成套商品。<br />
+                                    </p>
+                                </div>
+                            </div>
+                            <!--toggle item-->
+                            <div class="accordion_item r_corners shadow wrapper m_bottom_5">
+                                <h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+                                    服务保证
+                                    <span class="minus_icon tr_all_hover">-</span>
+                                    <span class="plus_icon tr_all_hover">+</span>
+                                </h3>
+                                <div class="bg_light_color_3 a_content">
+                                     <p>
+                                         1、质量保障<br />
+
+                                         该平台所有产品均来源于南川原产地的品牌正宗产品，产品质量安全可靠，您可以放心购买。<br />
+
+                                         2、正规发票<br />
+
+                                         网站提供的发票均为正规发票，此发票可用作单位报销使用。<br />
+
+                                         3、七天退换货<br />
+
+                                         在您收到商品之日起（以您签收日期为准至您办理退换货时间为止）7日内，如符合相关条件，我们将提供无理由退换货的服务详见“退换货政策”。<br />
+
+                                         4、服务优质<br />
+
+                                         我们秉承客户至上的理念，竭诚为您提供最舒适、最贴心的购物体验，如果您在享受我们服务的过程中，有任何不满，可直接投诉至总经理邮箱：111111@vip.sina.com<br />
+                                     </p>
+                                </div>
+                            </div>
+                            <!--toggle item-->
+                            <div class="accordion_item r_corners shadow wrapper m_bottom_5">
+                                <h3 class="color_light active a_title relative tr_all_hover">
+                                    关于开发商
+                                    <span class="minus_icon tr_all_hover">-</span>
+                                    <span class="plus_icon tr_all_hover">+</span>
+                                </h3>
+                                <div class="bg_light_color_3 a_content">
+                                    <p>
+                                        开发商：钟意（2016级重庆理工大学计算机学院）
+                                        学  号：11203070139
+                                        地  址：重庆市巴南区红光大道69号
+                                        应  用：2016年6月毕业设计
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-md-4 m_bottom_40">
+                        <h2 class="tt_uppercase color_dark m_bottom_25">帮助中心</h2>
+                        <!--toggle-->
+                        <div class="accordion toggle">
+                            <!--toggle item-->
+                            <div class="accordion_item r_corners shadow wrapper m_bottom_5">
+                                <h3 class="color_light active a_title relative tr_all_hover">
+                                    商家加盟
+                                    <span class="minus_icon tr_all_hover">-</span>
+                                    <span class="plus_icon tr_all_hover">+</span>
+                                </h3>
+                                <div class="bg_light_color_3 a_content">
+                                    <p>
+                                        为了不影响传统销售市场，在网站上所销售的产品可以采用灵活定价的策略，
+                                        我方将与合作企业在产品的市场定价上实行完全充分的协商机制，
+                                        确保产品定价的科学合理；
+                                        合作企业可以为交易平台生产专供的产品或同质量产品使用不同的包装，
+                                        有效区别于传统市场上销售的产品。
+                                        实行灵活的产品定价，将有效的保障合作企业在与我方的合作的同时，仍能有效保障其传统销售市场的稳定。<br />
+                                        加盟热线：1111111111、111111111111
+                                    </p>
+                                </div>
+                            </div>
+                            <!--toggle item-->
+                            <div class="accordion_item r_corners shadow wrapper m_bottom_5">
+                                <h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+                                    交易条款
+                                    <span class="minus_icon tr_all_hover">-</span>
+                                    <span class="plus_icon tr_all_hover">+</span>
+                                </h3>
+                                <div class="bg_light_color_3 a_content">
+                                    <p>
+                                        1.订购的商品价格以您下订单时网站上的价格为准。<br />
+
+                                        2.请准确填写您的真实姓名、收货地址及联系方式。<br />
+
+                                        3.安全性：无论您是电话订购或是网络订购商品，网站会保证交易信息的安全。<br />
+
+                                        4.隐私权：网站尊重您的隐私权，在任何情况下，网站都不会将您的个人和订单信息出售或泄露给任何第三方（国家司法机关调取除外）。<br />
+
+                                        5.免责：如因不可抗力或网站其它无法控制的原因使和茶网销售系统崩溃或无法正常使用，导致网上交易无法完成或丢失有关的信息、记录等，和茶网不承担责任。但是网站会尽可能合理地协助处理善后事宜，并努力使客户免受经济损失。<br />
+
+                                        6.客户监督：网站将通过不懈努力，为客户提供最佳服务，网站在给客户提供服务的全过程中接受客户的监督。<br />
+
+                                        7.争议处理：如果客户与网站之间发生任何争议，可依据当时双方所协商的解决办法或相关法律来解决，任何一方均可向法院提起诉讼。
+                                    </p>
+                                </div>
+                            </div>
+                            <!--toggle item-->
+                            <div class="accordion_item r_corners shadow wrapper m_bottom_5">
+                                <h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+                                    隐私说明
+                                    <span class="minus_icon tr_all_hover">-</span>
+                                    <span class="plus_icon tr_all_hover">+</span>
+                                </h3>
+                                <div class="bg_light_color_3 a_content">
+                                    <p>
+                                        未成年人的特别注意事项：  如果您未满18周岁，您无权使用本公司服务，因此我们希望您在注册时向我们提供任何真实个人信息，以便对您的信息进行保护。<br />
+
+                                        1、用户名和密码<br />
+
+                                        当您打算注册成用户后，我们要求您设置一个用户名和密码，我们可以核实您的身份。您只能通过您的密码来使用您的帐号。如果您泄漏了密码，您可能丢失了您的个人识别信息，并且有可能导致对您不利的事件发生。因此不管任何原因使您的密码安全受到危及，您应该立即和我们取得联系，以确保您自身的信息安全。<br />
+
+                                        2、注册信息<br />
+
+                                        当您在注册为用户时，我们会向您提供一张注册信息表，由您进行逐项填写。其中会要求提供您的真实姓名，地址，电话号码，和电子邮件地址。如果您是公司客户，您还被要求提供您的公司的地址，电话号码和贵公司的服务和产品的简短说明。您还有权选择来填写附加信息。这些信息可能包括您公司所在的省份和城市，时区和邮政编码，传真号码，主页和您的职务。我们使用注册信息来获得用户的统计资料。我们将会用这些统计数据来给我们的用户分类，以便有针对性地向我们的用户提供新的服务。我们会通过您的邮件地址来通知您这些新的服务。
+                                        <br />
+                                        3、您的交易行为<br />
+
+                                        我们跟踪IP地址仅仅只是为了交易安全的必要。如果我们没有发现任何交易安全问题，我们会及时删除我们收集到的IP地址。我们还跟踪全天的页面访问数据。全天页面访问数据被用来反映网站的流量，主要用来确定客户的真实需求，以便及时服务于您。
+
+                                        <br />4、第三方<br />
+
+                                        我们不会向任何第三方提供、出售、出租、分享和交易用户的个人信息。但不包括第三方和网站一起为网站和用户提供服务并且在该服务结束后已将被禁止访问包括其以前能够访问的所有这些资料。当我们被法律强制或依照政府要求提供您的信息时，我们无权利拒绝。
+
+                                        <br />5、网站外部链接<br />
+
+                                        本站含有到其他网站的链接。网站对外链网站的隐私保护措施不负任何责任。
+
+                                        <br />6、安全<br />
+
+                                        我们网站有相应的安全措施来确保我们掌握的客户信息不会对外泄露。这些安全措施包括但不限于向其它服务器备份数据和对用户密码加密。
+
+                                        <br />7、修改您的资料<br />
+
+                                        您在成功登录之后，可以随时在网站修改或者更新你的个人信息和密码。
+
+                                        <br /> 8、服务条款<br />
+
+                                        使用网站的服务同时受本站用户协议的约束。
+
+                                        <br /> 9、联系我们
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>

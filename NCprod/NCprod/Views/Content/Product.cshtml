@@ -1,0 +1,77 @@
+﻿@using NCprod.Models;
+@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "商品管理--商品列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+    });
+
+    function onRowSelected_edit(com_ID) {
+        window.location.href = "/Content/Edit?id=" + com_ID;
+    }
+
+    function onRowSelected_delete(com_ID) {
+        if (confirm('确认删除?')) {
+            $.post("/Content/Delete/", "id=" + com_ID, function (result) {
+                if (result.Total > 0) {
+                    $('#message').css("display", "block");
+                    var griddata = $('#ALLPRODUCTS').data('tGrid');
+                    griddata.dataBind(result.Data);
+                    setInterval(displaymessage, 3000);
+                }
+                else {
+                    $('msg').html('删除失败！');
+                    $('#message').css("display", "block");
+                }
+
+            });
+        }
+    }
+    function displaymessage() {
+        $('#message').css("display", "none");
+    }
+
+</script>
+<div style="margin-bottom: 5px; padding: 5px; border: 1px solid #ddd">
+    <a href="@Url.Action("Creat", "Content")" id="btnAdd" class="easyui-linkbutton" iconcls="icon-add" plain="true">
+        新增
+    </a>
+</div>
+@(Html.Telerik().Grid<Commdity1>().Name("ALLPRODUCTS")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(o => o.com_ID).Title("编号").Hidden();
+                        columns.Bound(o => o.com_name).Title("名称").Width(100);
+                        columns.Bound(o => o.com_price).Title("价格").Width(100);
+                        columns.Bound(o => o.com_number).Title("数量").Width(100);
+                        columns.Bound(o => o.com_postage).Title("邮费").Width(100);
+                        columns.Bound(o => o.com_content).Title("图片").Width(100);
+                        columns.Bound(o => o.option1).Title("类别").Width(100);
+                        columns.Bound(o => o.com_state).Title("状态").Width(100);
+                        columns.Bound(o => o.com_starttime).Title("新增时间").Width(100);
+                        columns.Bound(o => o.comment).Title("简介").Width(100); 
+                        
+                        columns.Bound(o => o.com_ID).Title("操作")
+                            .ClientTemplate("<a href=\"#\"  title='编辑' onclick=\"onRowSelected_edit(<#= com_ID #>,\'<#= com_name#>\')\">" +
+                            "<img src='/PIC/back/edit.gif'></a>&nbsp;|&nbsp;" +
+                            "<a href=\"#\" onclick=\"onRowSelected_delete(<#= com_ID #>)\" title='删除'>" +
+                            "<img src='/PIC/back/delete.png'></a>")
+                            .Width(80);
+                    })
+                            .DataBinding(dataBinding => dataBinding.Ajax().Select("ProductList", "Content"))
+                            .Selectable()
+                            .Pageable()
+                            .Footer(true)
+)
+<div style="height: 80px;">
+    <div id="message" class="alert alert-info" style="display: none; margin-right: 50px;
+        margin-top: 20px; float: right; width: 30%">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <h4 id="msg">
+            删除成功！
+        </h4>
+    </div>
+</div>
